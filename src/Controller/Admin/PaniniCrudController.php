@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Panini;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class PaniniCrudController extends AbstractCrudController
 {
