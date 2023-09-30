@@ -12,14 +12,13 @@ class PaniniCrudController extends AbstractCrudController
         return Panini::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            //IdField::new('id'),
+            TextField::new('description'),
+            AssociationField::new('Album')
         ];
     }
-    */
+
 }
