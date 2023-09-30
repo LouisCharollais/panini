@@ -19,7 +19,7 @@ class PaniniCrudController extends AbstractCrudController
         return [
             //IdField::new('id'),
             TextField::new('description'),
-            AssociationField::new('Album')
+            AssociationField::new('album')
         ];
     }
 
