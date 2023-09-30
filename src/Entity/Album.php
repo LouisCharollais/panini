@@ -18,6 +18,10 @@ class Album
     #[ORM\OneToMany(mappedBy: 'album', targetEntity: Panini::class, orphanRemoval: true)]
     private Collection $paninis;
 
+    #[ORM\ManyToOne(inversedBy: 'albums')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Membre $membres = null;
+
     public function __construct()
     {
         $this->paninis = new ArrayCollection();
@@ -61,6 +65,18 @@ class Album
     public function __toString(): string
     {
         return $this->getId();
+    }
+
+    public function getMembres(): ?Membre
+    {
+        return $this->membres;
+    }
+
+    public function setMembres(?Membre $membres): static
+    {
+        $this->membres = $membres;
+
+        return $this;
     }
 
 }
