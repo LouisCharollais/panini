@@ -11,7 +11,7 @@ class PaniniController extends AbstractController
     #[Route('/panini', name: 'app_panini')]
     public function index(): Response
     {
-        return $this->render('panini/index.html.twig', [
+        return $this->render('panini/show.html.twig', [
             'controller_name' => 'PaniniController',
         ]);
     }

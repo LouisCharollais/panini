@@ -11,7 +11,7 @@ class AlbumController extends AbstractController
     #[Route('/album', name: 'app_album')]
     public function index(): Response
     {
-        return $this->render('album/index.html.twig', [
+        return $this->render('album/show.html.twig', [
             'controller_name' => 'AlbumController',
         ]);
     }
