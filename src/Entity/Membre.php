@@ -16,11 +16,17 @@ class Membre
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'membres', targetEntity: Album::class, orphanRemoval: true)]
-    private Collection $albums;
+    private Collection $album;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $prenom = null;
 
     public function __construct()
     {
-        $this->albums = new ArrayCollection();
+        $this->album = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -33,13 +39,13 @@ class Membre
      */
     public function getAlbums(): Collection
     {
-        return $this->albums;
+        return $this->album;
     }
 
     public function addAlbum(Album $album): static
     {
-        if (!$this->albums->contains($album)) {
-            $this->albums->add($album);
+        if (!$this->album->contains($album)) {
+            $this->album->add($album);
             $album->setMembres($this);
         }
 
@@ -48,12 +54,36 @@ class Membre
 
     public function removeAlbum(Album $album): static
     {
-        if ($this->albums->removeElement($album)) {
+        if ($this->album->removeElement($album)) {
             // set the owning side to null (unless already changed)
             if ($album->getMembres() === $this) {
                 $album->setMembres(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }
