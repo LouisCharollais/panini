@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Albums{% endblock %}
+
+{% block body %}
+    <h1>Albums</h1>
+
+    <ul>
+        {% for album in albums %}
+            <li>{{ Album.id }}</li>
+        {% endfor %} {# todos #}
+    </ul>
+
+{% endblock %} {# body #}

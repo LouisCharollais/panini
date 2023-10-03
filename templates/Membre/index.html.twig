@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membres{% endblock %}
+
+{% block body %}
+    <h1>Membres</h1>
+
+    <ul>
+        {% for membre in membres %}
+            <li>{{ Member.id }}</li>
+        {% endfor %} {# todos #}
+    </ul>
+
+{% endblock %} {# body #}
