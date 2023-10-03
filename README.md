@@ -22,13 +22,13 @@ TODO LIST
         entité Panini                                                                           OK
         association 1-N entre Album et Panini                                                   OK
         propriétés non essentielles des Paninis                                                 OK
-5 : ajout de données de test chargeables avec fixtures                                      NON
-        pour Album                                                                          NON                               
-        pour Panini                                                                         NON
-6 : ajout d'une interface EasyAdmin dans le back-office avec les 2 contrôleurs CRUD         NON
+5 : ajout de données de test chargeables avec fixtures                                          OK
+        pour Album                                                                              OK                            
+        pour Panini                                                                             OK
+6 : ajout d'une interface EasyAdmin dans le back-office avec les 2 contrôleurs CRUD             OK
         pour Album                                                                              OK
         pour Panini                                                                             OK
-        navigation entre Album et ses Paninis                                               NON
+        navigation entre Album et ses Paninis                                                   OK
 7 : ajout de l'entité Membre et du lien Membre-Album                                            OK
         ajout de Membre au modèle de données                                                    OK
         ajout de l'association 1-N entre Membre et Album                                        OK
