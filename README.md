@@ -1,6 +1,6 @@
 # Panini
 
-Site de collection de panini
+Site de collection de cartes panini
 
 Commandes utiles
 symfony console make:entity
