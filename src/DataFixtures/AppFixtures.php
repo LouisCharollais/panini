@@ -2,6 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Album;
+use App\Entity\Membre;
+use App\Entity\Panini;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
