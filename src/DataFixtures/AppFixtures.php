@@ -12,22 +12,30 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $membre = new Membre();
+        $membre->setNom('test_nom');
+        $membre->setPrenom('test_prenom');
+        $membre->__construct();
+
         $album = new Album();
         $album->__construct();
-        $album->getId();
-        $album->getPaninis();
-        $album->addPanini(new Panini());
-        $album->removePanini(new Panini());
-        $album->getMembres();
-        $album->setMembres(new Membre());
+        $album->setNom('album_test');
+        $membre->addAlbum($album);
 
         $panini = new Panini();
-        $panini->__construct();
-        $panini->getId();
-        $panini->getDescription();
-        $panini->setDescription('fixture');
-        $panini->getAlbum();
-        $panini->setAlbum(new Album());
+        //$panini->__construct();
+        //$panini->getId();
+        //$panini->getDescription();
+        $panini->setDescription('test_description');
+        //$panini->getAlbum();
+        $panini->setAlbum($album);
+        $album->addPanini($panini);
+
+        $manager->persist($membre);
+        $manager->persist($album);
+        $manager->persist($panini);
+
+        $manager->flush();
 
     }
 }

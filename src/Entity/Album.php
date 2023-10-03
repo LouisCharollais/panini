@@ -22,6 +22,9 @@ class Album
     #[ORM\JoinColumn(nullable: false)]
     private ?Membre $membres = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
     public function __construct()
     {
         $this->paninis = new ArrayCollection();
@@ -75,6 +78,18 @@ class Album
     public function setMembres(?Membre $membres): static
     {
         $this->membres = $membres;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
 
         return $this;
     }
