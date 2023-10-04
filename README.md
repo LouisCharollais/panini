@@ -32,9 +32,9 @@ TODO LIST
 7 : ajout de l'entité Membre et du lien Membre-Album                                            OK
         ajout de Membre au modèle de données                                                    OK
         ajout de l'association 1-N entre Membre et Album                                        OK
-8 : création des pages du "front-office" de consultation des Album                          NON
-        consultation de la liste des Albums                                                 NON
-        consultation d'une fiche d'Album à partir de la liste                               NON
+8 : création des pages du "front-office" de consultation des Album                              OK
+        consultation de la liste des Albums                                                     OK
+        consultation d'une fiche d'Album à partir de la liste                                   OK
 9 : ajout de la navigation entre Album et Panini dans le back-office                        NON
 10 : utilisation de gabarits pour les pages de consultation du front-office                 NON
         consultation d'un Panini                                                            NON
