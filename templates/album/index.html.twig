@@ -4,24 +4,61 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>Mes Albums</h1>
-    <table>
+<div class="container">
+    <h1 class="mt-5">Mes Albums</h1>
+    <table class="table table-bordered mt-3">
+        <thead>
         <tr>
-            <th>Nom</th>
-            <th>Voir</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Actions</th>
         </tr>
-
+        </thead>
+        <tbody>
         {% for album in albums %}
-        <tr>
-                <td>{{ album.id }}</td>
+            <tr>
                 <td>{{ album.nom }}</td>
-                <td><a href=\"{{ path('album_show', {'id': album.id}) }}\">Voir</a></td>
+                <td>
+                    <a href="{{ path('album_show', {'id': album.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan=\"2\">Aucun album trouvé</td>
+                <td colspan="2" class="text-center">Aucun album trouvé</td>
             </tr>
         {% endfor %}
-
+        </tbody>
     </table>
+</div>
+
+<style>
+    /* Styles CSS personnalisés */
+    .container {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    .btn-sm {
+        font-size: 12px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+
 {% endblock %}
