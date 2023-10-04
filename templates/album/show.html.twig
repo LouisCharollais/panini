@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Album{% endblock %}
+
+{% block body %}
+    <h1>Mon Album</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td>{{ album.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ album.nom }}</td>
+        </tr>
+        <tr>
+            <th>Membre</th>
+            <td>{{ album.membre }}</td>
+        </tr>
+        <tr>
+            <th>Cartes</th>
+            <td>
+                <ul>
+                    {% for carte in album.paninis %}
+                        <li><a href="{{ path('panini_show', { 'id': panini.id }) }}">{{ carte }}</a></li>
+                    {% endfor %}
+                </ul>
+        </tr>
+    </table>
+
+    <a href="{{ path('album') }}"></a>
+
+{% endblock %}

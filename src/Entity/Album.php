@@ -20,7 +20,7 @@ class Album
 
     #[ORM\ManyToOne(inversedBy: 'albums')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Membre $membres = null;
+    private ?Membre $membre = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
@@ -70,14 +70,14 @@ class Album
         return $this->getId();
     }
 
-    public function getMembres(): ?Membre
+    public function getMembre(): ?Membre
     {
-        return $this->membres;
+        return $this->membre;
     }
 
-    public function setMembres(?Membre $membres): static
+    public function setMembre(?Membre $membre): static
     {
-        $this->membres = $membres;
+        $this->membre = $membre;
 
         return $this;
     }
