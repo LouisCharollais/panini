@@ -1,11 +1,18 @@
 # Panini
-
+Louis CHAROLLAIS
 Site de collection de cartes panini
+
+Nomenclature :
+    - Album : Inventaire
+    - Panini : Objet
+    - Membre : Membre
+    - Galerie : pas encore fait
 
 Commandes utiles
 symfony console make:entity
 symfony console doctrine:database:create
 symfony console doctrine:schema:create
+symfony console doctrine:fixtures:load
 
 en cas de soucis, on peut recréer la base de données (à vide) :
 suppression de la base (symfony console doctrine:database:drop)
