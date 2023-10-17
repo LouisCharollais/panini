@@ -21,7 +21,7 @@
 - [x] 8 : Création des pages du "front-office" de consultation des Albums
     - [x] Consultation de la liste des Albums
     - [x] Consultation d'une fiche d'Album à partir de la liste
-- [ ] 9 : Ajout de la navigation entre Album et Panini dans le back-office
+- [x] 9 : Ajout de la navigation entre Album et Panini dans le back-office
 - [ ] 10 : Utilisation de gabarits pour les pages de consultation du front-office
     - [ ] Consultation d'un Panini
     - [ ] Consultation de la liste des Paninis d'un Album
