@@ -46,7 +46,7 @@ class Membre
     {
         if (!$this->album->contains($album)) {
             $this->album->add($album);
-            $album->setMembres($this);
+            $album->setMembre($this);
         }
 
         return $this;
@@ -86,5 +86,10 @@ class Membre
         $this->prenom = $prenom;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getId();
     }
 }

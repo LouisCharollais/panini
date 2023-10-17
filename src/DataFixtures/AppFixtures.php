@@ -20,6 +20,7 @@ class AppFixtures extends Fixture
         $album = new Album();
         $album->__construct();
         $album->setNom('album_test');
+        $album->setMembre($membre);
         $membre->addAlbum($album);
 
         $panini = new Panini();
