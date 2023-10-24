@@ -22,7 +22,7 @@
             <td>
                 <ul>
                     {% for carte in album.paninis %}
-                        <li><a href="{{ path('panini_show', { 'id': panini.id }) }}">{{ carte }}</a></li>
+                        <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte }}</a></li>
                     {% endfor %}
                 </ul>
         </tr>
