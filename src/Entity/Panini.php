@@ -20,6 +20,9 @@ class Panini
     #[ORM\JoinColumn(nullable: false)]
     private ?Album $album = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,5 +55,17 @@ class Panini
     public function __toString(): string
     {
         return $this->description;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
     }
 }

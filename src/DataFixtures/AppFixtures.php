@@ -27,7 +27,8 @@ class AppFixtures extends Fixture
         //$panini->__construct();
         //$panini->getId();
         //$panini->getDescription();
-        $panini_1->setDescription('carte_1');
+        $panini_1->setNom('carte_1');
+        $panini_1->setDescription('description_1');
         //$panini->getAlbum();
         $panini_1->setAlbum($album);
         $album->addPanini($panini_1);
@@ -36,7 +37,8 @@ class AppFixtures extends Fixture
         //$panini->__construct();
         //$panini->getId();
         //$panini->getDescription();
-        $panini_2->setDescription('carte_2');
+        $panini_2->setNom('carte_2');
+        $panini_2->setDescription('description_2');
         //$panini->getAlbum();
         $panini_2->setAlbum($album);
         $album->addPanini($panini_2);
