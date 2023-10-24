@@ -44,10 +44,10 @@ re-création du schéma (symfony console doctrine:schema:create)
     - [x] Consultation de la liste des Albums
     - [x] Consultation d'une fiche d'Album à partir de la liste
 - [x] 9 : Ajout de la navigation entre Album et Panini dans le back-office
-- [ ] 10 : Utilisation de gabarits pour les pages de consultation du front-office
-    - [ ] Consultation d'un Panini
-    - [ ] Consultation de la liste des Paninis d'un Album
-    - [ ] Navigation d'un Album vers la consultation de ses Paninis
+- [x] 10 : Utilisation de gabarits pour les pages de consultation du front-office
+    - [x] Consultation d'un Panini
+    - [x] Consultation de la liste des Paninis d'un Album
+    - [x] Navigation d'un Album vers la consultation de ses Paninis
 - [ ] 11 : Intégration d'une mise en forme CSS avec Bootstrap dans les gabarits Twig
 - [ ] 12 : Intégration de menus de navigation
 - [ ] 13 : Ajout de l'entité [galerie] au modèle des données et de l'association M-N avec Panini
