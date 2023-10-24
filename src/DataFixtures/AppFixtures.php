@@ -23,27 +23,28 @@ class AppFixtures extends Fixture
         $album->setMembre($membre);
         $membre->addAlbum($album);
 
-        $panini = new Panini();
+        $panini_1 = new Panini();
         //$panini->__construct();
         //$panini->getId();
         //$panini->getDescription();
-        $panini->setDescription('carte_1');
+        $panini_1->setDescription('carte_1');
         //$panini->getAlbum();
-        $panini->setAlbum($album);
-        $album->addPanini($panini);
+        $panini_1->setAlbum($album);
+        $album->addPanini($panini_1);
 
-        $panini = new Panini();
+        $panini_2 = new Panini();
         //$panini->__construct();
         //$panini->getId();
         //$panini->getDescription();
-        $panini->setDescription('carte_2');
+        $panini_2->setDescription('carte_2');
         //$panini->getAlbum();
-        $panini->setAlbum($album);
-        $album->addPanini($panini);
+        $panini_2->setAlbum($album);
+        $album->addPanini($panini_2);
 
         $manager->persist($membre);
         $manager->persist($album);
-        $manager->persist($panini);
+        $manager->persist($panini_1);
+        $manager->persist($panini_2);
 
         $manager->flush();
 
