@@ -27,7 +27,16 @@ class AppFixtures extends Fixture
         //$panini->__construct();
         //$panini->getId();
         //$panini->getDescription();
-        $panini->setDescription('test_description');
+        $panini->setDescription('carte_1');
+        //$panini->getAlbum();
+        $panini->setAlbum($album);
+        $album->addPanini($panini);
+
+        $panini = new Panini();
+        //$panini->__construct();
+        //$panini->getId();
+        //$panini->getDescription();
+        $panini->setDescription('carte_2');
         //$panini->getAlbum();
         $panini->setAlbum($album);
         $album->addPanini($panini);

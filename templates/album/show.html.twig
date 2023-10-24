@@ -3,31 +3,76 @@
 {% block title %}Mon Album{% endblock %}
 
 {% block body %}
-    <h1>Mon Album</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <td>{{ album.id }}</td>
-        </tr>
-        <tr>
-            <th>Nom</th>
-            <td>{{ album.nom }}</td>
-        </tr>
-        <tr>
-            <th>Membre</th>
-            <td>{{ album.membre }}</td>
-        </tr>
-        <tr>
-            <th>Cartes</th>
-            <td>
-                <ul>
-                    {% for carte in album.paninis %}
-                        <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte }}</a></li>
-                    {% endfor %}
-                </ul>
-        </tr>
-    </table>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    <a href="{{ path('album') }}"></a>
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Mon Album</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>{{ album.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ album.nom }}</td>
+            </tr>
+            <tr>
+                <th>Membre</th>
+                <td>{{ album.membre }}</td>
+            </tr>
+            <tr>
+                <th>Cartes</th>
+                <td>
+                    <ul>
+                        {% for carte in album.paninis %}
+                            <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <a href="{{ path('album') }}">Retour à la liste des albums</a>
+    </div>
 {% endblock %}
