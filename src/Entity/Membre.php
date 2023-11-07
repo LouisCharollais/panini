@@ -24,6 +24,9 @@ class Membre
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
+    #[ORM\ManyToOne(inversedBy: 'créateur')]
+    private ?Equipe $equipes = null;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
@@ -91,5 +94,17 @@ class Membre
     public function __toString(): string
     {
         return $this->getId();
+    }
+
+    public function getEquipes(): ?Equipe
+    {
+        return $this->equipes;
+    }
+
+    public function setEquipes(?Equipe $equipes): static
+    {
+        $this->equipes = $equipes;
+
+        return $this;
     }
 }
