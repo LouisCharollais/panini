@@ -51,7 +51,7 @@ re-création du schéma (symfony console doctrine:schema:create)
 - [x] 11 : Intégration d'une mise en forme CSS avec Bootstrap dans les gabarits Twig
 - [x] 12 : Intégration de menus de navigation
 - [x] 13 : Ajout de l'entité Equipe au modèle des données et de l'association M-N avec Panini
-- [ ] 14 : Ajout de Equipe dans le back-office
+- [x] 14 : Ajout de Equipe dans le back-office
 - [ ] 15 : Ajout d'un contrôleur CRUD au front-office pour [galerie]
 - [ ] 16 : Ajout de fonctions CRUD au front-office pour Album
 - [ ] 17 : Ajout de la consultation des Paninis depuis les [galeries] publiques
