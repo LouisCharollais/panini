@@ -16,7 +16,7 @@ class Equipe
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'equipes', targetEntity: Membre::class)]
-    private Collection $créateur;
+    private Collection $createur;
 
     #[ORM\ManyToMany(targetEntity: Panini::class, inversedBy: 'equipes')]
     private Collection $paninis;
@@ -26,7 +26,7 @@ class Equipe
 
     public function __construct()
     {
-        $this->créateur = new ArrayCollection();
+        $this->createur = new ArrayCollection();
         $this->paninis = new ArrayCollection();
     }
 
@@ -38,27 +38,27 @@ class Equipe
     /**
      * @return Collection<int, Membre>
      */
-    public function getCréateur(): Collection
+    public function getCreateur(): Collection
     {
-        return $this->créateur;
+        return $this->createur;
     }
 
-    public function addCrAteur(Membre $crAteur): static
+    public function addCreateur(Membre $createur): static
     {
-        if (!$this->créateur->contains($crAteur)) {
-            $this->créateur->add($crAteur);
-            $crAteur->setEquipes($this);
+        if (!$this->createur->contains($createur)) {
+            $this->createur->add($createur);
+            $createur->setEquipes($this);
         }
 
         return $this;
     }
 
-    public function removeCrAteur(Membre $crAteur): static
+    public function removeCréateur(Membre $createur): static
     {
-        if ($this->créateur->removeElement($crAteur)) {
+        if ($this->createur->removeElement($createur)) {
             // set the owning side to null (unless already changed)
-            if ($crAteur->getEquipes() === $this) {
-                $crAteur->setEquipes(null);
+            if ($createur->getEquipes() === $this) {
+                $createur->setEquipes(null);
             }
         }
 

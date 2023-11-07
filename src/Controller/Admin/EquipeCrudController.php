@@ -26,7 +26,7 @@ class EquipeCrudController extends AbstractCrudController
             AssociationField::new('paninis'),
                 //->onlyOnDetail()
                 //->setTemplatePath('admin/fields/album_paninis.html.twig')
-            AssociationField::new('créateur')
+            AssociationField::new('createur')
                 //->onlyOnDetail()
                 //->setTemplatePath('admin/fields/equipe_créateur.html.twig')
         ];
