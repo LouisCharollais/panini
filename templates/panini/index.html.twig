@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Paninis{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <h1 class="mt-5">Mes Cartes</h1>
+        <table class="table table-bordered mt-3">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for carte in paninis %}
+                <tr>
+                    <td>{{ carte.nom }}</td>
+                    <td>
+                        <a href="{{ path('panini_show', {'id': carte.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="text-center">Aucune carte trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <style>
+        /* Styles CSS personnalisés */
+        .container {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .btn-sm {
+            font-size: 12px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+{% endblock %}
