@@ -23,12 +23,12 @@ class EquipeCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
-            AssociationField::new('paninis'),
-                //->onlyOnDetail()
-                //->setTemplatePath('admin/fields/album_paninis.html.twig')
-            AssociationField::new('createur')
+            AssociationField::new('createur'),
                 //->onlyOnDetail()
                 //->setTemplatePath('admin/fields/equipe_créateur.html.twig')
+            AssociationField::new('paninis')
+                ->onlyOnDetail()
+                ->setTemplatePath('admin/fields/album_paninis.html.twig')
         ];
     }
 
