@@ -15,9 +15,6 @@ class Panini
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
-
     #[ORM\ManyToOne(inversedBy: 'paninis')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Album $album = null;
@@ -38,18 +35,6 @@ class Panini
         return $this->id;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
     public function getAlbum(): ?Album
     {
         return $this->album;
@@ -64,7 +49,7 @@ class Panini
 
     public function __toString(): string
     {
-        return $this->description;
+        return $this->nom;
     }
 
     public function getNom(): ?string
