@@ -38,10 +38,9 @@ class AppFixtures extends Fixture
 
         $equipe_1 = new Equipe();
         $equipe_1->setNom('équipe_1');
-        $equipe_1->addCreateur($membre);
         $equipe_1->addPanini($panini_1);
         $equipe_1->addPanini($panini_2);
-        $membre->setEquipes($equipe_1);
+        $equipe_1->setCreateur($membre);
 
         $manager->persist($membre);
         $manager->persist($album);

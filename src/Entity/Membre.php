@@ -24,12 +24,13 @@ class Membre
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'créateur')]
-    private ?Equipe $equipes = null;
+    #[ORM\OneToMany(mappedBy: 'createur', targetEntity: Equipe::class)]
+    private Collection $equipes;
 
     public function __construct()
     {
         $this->albums = new ArrayCollection();
+        $this->equipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,8 +60,8 @@ class Membre
     {
         if ($this->albums->removeElement($album)) {
             // set the owning side to null (unless already changed)
-            if ($album->getMembres() === $this) {
-                $album->setMembres(null);
+            if ($album->getMembre() === $this) {
+                $album->setMembre(null);
             }
         }
 
@@ -96,14 +97,36 @@ class Membre
         return $this->getId();
     }
 
-    public function getEquipes(): ?Equipe
+    /**
+     * @return Collection<int, Membre>
+     */
+
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipes(): Collection
     {
         return $this->equipes;
     }
 
-    public function setEquipes(?Equipe $equipes): static
+    public function addEquipe(Equipe $equipe): static
     {
-        $this->equipes = $equipes;
+        if (!$this->equipes->contains($equipe)) {
+            $this->equipes->add($equipe);
+            $equipe->setCreateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipe(Equipe $equipe): static
+    {
+        if ($this->equipes->removeElement($equipe)) {
+            // set the owning side to null (unless already changed)
+            if ($equipe->getCreateur() === $this) {
+                $equipe->setCreateur(null);
+            }
+        }
 
         return $this;
     }

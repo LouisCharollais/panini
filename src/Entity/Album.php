@@ -70,12 +70,12 @@ class Album
         return $this->getId();
     }
 
-    public function getMembre(): Membre
+    public function getMembre(): ?Membre
     {
         return $this->membre;
     }
 
-    public function setMembre(Membre $membre): static
+    public function setMembre(?Membre $membre): static
     {
         $this->membre = $membre;
 
