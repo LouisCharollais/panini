@@ -9,3 +9,7 @@ bootstrap_menu:
         paninis:
           label: 'Paninis'
           route: 'panini_all'
+
+        equipes:
+          label: 'Equipes'
+          route: 'equipe_index'
