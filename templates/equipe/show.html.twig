@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Equipe{% endblock %}
+{% block title %}Mon équipe{% endblock %}
 
 {% block body %}
     <style>
@@ -47,7 +47,7 @@
     </style>
 
     <div class="container">
-        <h1>Mon Equipe</h1>
+        <h1>Mon équipe</h1>
         <table>
             <tr>
                 <th>ID</th>
@@ -58,7 +58,7 @@
                 <td>{{ equipe.nom }}</td>
             </tr>
             <tr>
-                <th>Créateur</th>
+                <th>Propriétaire</th>
                 <td>{{ equipe.createur.nom }}</td>
             </tr>
             <tr>
@@ -73,6 +73,9 @@
             </tr>
         </table>
 
-        <a href="{{ path('equipe') }}">Retour à la liste des équipes</a>
+        <a href="{{ path('equipe_index') }}">Retour à la liste des équipes</a>
+
+        {{ include('equipe/_delete_form.html.twig') }}
     </div>
 {% endblock %}
+

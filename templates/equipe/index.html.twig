@@ -19,6 +19,7 @@
                     <td>{{ equipe.nom }}</td>
                     <td>
                         <a href="{{ path('equipe_show', {'id': equipe.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="{{ path('equipe_delete', {'id': equipe.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                     </td>
                 </tr>
             {% else %}

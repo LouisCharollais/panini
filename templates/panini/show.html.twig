@@ -48,6 +48,10 @@
         <h1>{{ panini.nom }}</h1>
         <table>
             <tr>
+                <th>Nom</th>
+                <td>{{ panini.nom }}</td>
+            </tr>
+            <tr>
                 <th>Album</th>
                 <td><a href="{{ path('album_show', {'id': panini.album.id}) }}">{{ panini.album.nom }}</a></td>
             </tr>
