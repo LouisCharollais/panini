@@ -2,7 +2,7 @@
 <ul>
     {% for panini in field.value %}
     {%- set url = ea_url()
-        .setController('App\\Controller\\Admin\\PaniniCrudController')
+        .setController('App\\Controller\\Admin\\EquipeCrudController')
         .setAction('detail')
         .setEntityId(panini.id)
     -%}
