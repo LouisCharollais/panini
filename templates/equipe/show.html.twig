@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Album{% endblock %}
+{% block title %}Mon Equipe{% endblock %}
 
 {% block body %}
     <style>
@@ -47,25 +47,25 @@
     </style>
 
     <div class="container">
-        <h1>Mon Album</h1>
+        <h1>Mon Equipe</h1>
         <table>
             <tr>
                 <th>ID</th>
-                <td>{{ album.id }}</td>
+                <td>{{ equipe.id }}</td>
             </tr>
             <tr>
                 <th>Nom</th>
-                <td>{{ album.nom }}</td>
+                <td>{{ equipe.nom }}</td>
             </tr>
             <tr>
-                <th>Membre</th>
-                <td>{{ album.membre.nom }}</td>
+                <th>Créateur</th>
+                <td>{{ equipe.createur.nom }}</td>
             </tr>
             <tr>
                 <th>Cartes</th>
                 <td>
                     <ul>
-                        {% for carte in album.paninis %}
+                        {% for carte in equipe.paninis %}
                             <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a></li>
                         {% endfor %}
                     </ul>
@@ -73,6 +73,6 @@
             </tr>
         </table>
 
-        <a href="{{ path('album') }}">Retour à la liste des albums</a>
+        <a href="{{ path('equipe') }}">Retour à la liste des équipes</a>
     </div>
 {% endblock %}

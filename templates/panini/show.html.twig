@@ -52,8 +52,16 @@
                 <td><a href="{{ path('album_show', {'id': panini.album.id}) }}">{{ panini.album.nom }}</a></td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ panini.description }}</td>
+                <th>Equipes</th>
+                <td>
+                    <ul>
+                        {% for equipe in panini.equipes %}
+                            <li><a href="{{ path('equipe_show', {'id': equipe.id}) }}">{{ equipe.nom }}</a></li>
+                        {% else %}
+                            <li>Aucune équipe</li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
         </table>
     </div>
