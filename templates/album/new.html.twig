@@ -3,6 +3,7 @@
 {% block title %}Nouvel album{% endblock %}
 
 {% block body %}
+    {{ parent() }}
     <h1>Créer un nouvel album</h1>
 
     {{ include('album/_form.html.twig') }}

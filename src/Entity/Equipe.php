@@ -81,4 +81,9 @@ class Equipe
 
         return $this;
     }
+
+    public function isPublished()
+    {
+        return $this->getCreateur() !== null;
+    }
 }

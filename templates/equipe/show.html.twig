@@ -3,6 +3,7 @@
 {% block title %}Mon équipe{% endblock %}
 
 {% block body %}
+    {{ parent() }}
     <style>
         .container {
             max-width: 800px;
@@ -66,7 +67,7 @@
                 <td>
                     <ul>
                         {% for carte in equipe.paninis %}
-                            <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a></li>
+                            <li><a href="{{ path('equipe_panini_show', { 'equipe_id': equipe.id, 'panini_id': carte.id }) }}">{{ carte.nom }}</a></li>
                         {% endfor %}
                     </ul>
                 </td>

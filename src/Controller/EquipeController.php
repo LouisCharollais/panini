@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Equipe;
+use App\Entity\Panini;
 use App\Form\EquipeType;
 use App\Repository\EquipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 
 #[Route('/equipe')]
 class EquipeController extends AbstractController
@@ -78,4 +80,25 @@ class EquipeController extends AbstractController
 
         return $this->redirectToRoute('equipe_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{equipe_id}/panini/{panini_id}', name: 'equipe_panini_show', methods: ['GET'])]
+    public function paniniShow(
+       #[MapEntity(id: 'equipe_id')]
+       Equipe $equipe,
+       #[MapEntity(id: 'panini_id')]
+       Panini $panini
+   ): Response
+   {
+       if(! $equipe->getPaninis()->contains($panini)) {
+           throw $this->createNotFoundException("Ce panini n'a pas été trouvé dans cette équipe");
+       }
+
+       if(! $equipe->isPublished()) {
+           throw $this->createAccessDeniedException("Vous n'avez pas l'accès à cette ressource");
+       }
+       return $this->render('equipe/panini_show.html.twig', [
+           'panini' => $panini,
+           'equipe' => $equipe
+       ]);
+   }
 }
