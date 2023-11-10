@@ -53,7 +53,7 @@ re-création du schéma (symfony console doctrine:schema:create)
 - [x] 13 : Ajout de l'entité Equipe au modèle des données et de l'association M-N avec Panini
 - [x] 14 : Ajout de Equipe dans le back-office
 - [x] 15 : Ajout d'un contrôleur CRUD au front-office pour Equipe
-- [ ] 16 : Ajout de fonctions CRUD au front-office pour Album
+- [x] 16 : Ajout de fonctions CRUD au front-office pour Album
 - [ ] 17 : Ajout de la consultation des Paninis depuis les [galeries] publiques
 - [ ] 18 : Ajout d'un contrôleur CRUD pour Membres
 - [ ] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
