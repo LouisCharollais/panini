@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des membres{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <h1>Liste des membres</h1>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for membre in membres %}
+                <tr>
+                    <td>{{ membre.id }}</td>
+                    <td>{{ membre.nom }}</td>
+                    <td>{{ membre.prenom }}</td>
+                    <td>
+                        <a href="{{ path('membre_show', {'id': membre.id}) }}" class="btn-primary btn-sm-blue">Voir</a>
+                        <a href="{{ path('membre_edit', {'id': membre.id}) }}" class="btn-primary btn-sm-yellow">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun membre trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('membre_new') }}" class="btn-sm1">Créer un nouveau membre</a>
+    <style>
+        /* Styles CSS personnalisés */
+        .container {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Ajoutez ces styles à votre feuille de style CSS */
+
+        .btn-sm-blue {
+            font-size: 15px;
+            padding: 5px 10px; /* Ajustez le rembourrage selon vos préférences */
+            border-radius: 3px; /* Ajoutez des coins arrondis */
+            background-color: #007bff; /* Couleur de fond du bouton */
+            color: #fff; /* Couleur du texte du bouton */
+            border: 5px solid #007bff; /* Bordure du bouton */
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm-blue:hover {
+            background-color: #0056b3; /* Couleur de fond du bouton au survol */
+            border-color: #0056b3; /* Couleur de la bordure au survol */
+            color: #fff; /* Couleur du texte du bouton au survol */
+            text-decoration: none;
+        }
+
+        .btn-sm-yellow {
+            font-size: 15px;
+            padding: 5px 10px; /* Ajustez le rembourrage selon vos préférences */
+            border-radius: 3px; /* Ajoutez des coins arrondis */
+            background-color: #ffc107; /* Couleur de fond du bouton */
+            color: #000; /* Couleur du texte du bouton */
+            border: 5px solid #ffc107; /* Bordure du bouton */
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm-yellow:hover {
+            background-color: #e0a800; /* Couleur de fond du bouton au survol */
+            border-color: #e0a800; /* Couleur de la bordure au survol */
+            color: #000; /* Couleur du texte du bouton au survol */
+            text-decoration: none;
+        }
+
+        .btn-sm1 {
+            font-size: 15px;
+            padding: 5px 10px; /* Ajustez le rembourrage selon vos préférences */
+            border-radius: 3px; /* Ajoutez des coins arrondis */
+            background-color: #28a745; /* Couleur de fond du bouton */
+            color: #fff; /* Couleur du texte du bouton */
+            border: 5px solid #28a745; /* Bordure du bouton */
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm1:hover {
+            background-color: #218838; /* Couleur de fond du bouton au survol */
+            border-color: #218838; /* Couleur de la bordure au survol */
+            color: #fff; /* Couleur du texte du bouton au survol */
+            text-decoration:none;
+        }
+
+    </style>
+{% endblock %}

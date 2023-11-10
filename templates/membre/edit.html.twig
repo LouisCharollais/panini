@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le membre{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+
+    <h1>Modifier le membre</h1>
+
+    {{ include('membre/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    <a href="{{ path('membre_index') }}">Retour à la liste</a>
+
+    {{ include('membre/_delete_form.html.twig') }}
+{% endblock %}

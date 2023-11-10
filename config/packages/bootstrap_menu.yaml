@@ -13,3 +13,7 @@ bootstrap_menu:
         equipes:
           label: 'Equipes'
           route: 'equipe_index'
+
+        membres:
+          label: 'Membres'
+          route: 'membre_index'
