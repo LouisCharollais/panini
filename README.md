@@ -19,6 +19,19 @@ suppression de la base (symfony console doctrine:database:drop)
 re-création de la base (symfony console doctrine:database:create)
 re-création du schéma (symfony console doctrine:schema:create)
 
+Couleurs des boutons
+Bleu : #007bff
+Bleu foncé : #0056b3
+Vert : #28a745
+Vert foncé : #218838
+Rouge : #dc3545
+Rouge foncé : #c82333
+Jaune : #ffc107
+Jaune foncé : #e0a800
+Gris : #777
+Gris foncé : #555
+
+!! bien refaire la page edit !!
 
 ## TODO LIST
 
@@ -55,8 +68,8 @@ re-création du schéma (symfony console doctrine:schema:create)
 - [x] 15 : Ajout d'un contrôleur CRUD au front-office pour Equipe
 - [x] 16 : Ajout de fonctions CRUD au front-office pour Album
 - [x] 17 : Ajout de la consultation des Paninis depuis les Equipes publiques
-- [ ] 18 : Ajout d'un contrôleur CRUD pour Membres
-- [ ] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
+- [x] 18 : Ajout d'un contrôleur CRUD pour Membres
+- [x] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
 - [ ] 20 : Contextualisation de la création d'Album en fonction du Membre
 - [ ] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
 - [ ] 22 : Contextualisation de la création d'une [galerie] en fonction du membre
