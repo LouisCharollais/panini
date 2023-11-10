@@ -22,17 +22,17 @@
     - [x] Consultation de la liste des Albums
     - [x] Consultation d'une fiche d'Album à partir de la liste
 - [x] 9 : Ajout de la navigation entre Album et Panini dans le back-office
-- [ ] 10 : Utilisation de gabarits pour les pages de consultation du front-office
-    - [ ] Consultation d'un Panini
-    - [ ] Consultation de la liste des Paninis d'un Album
-    - [ ] Navigation d'un Album vers la consultation de ses Paninis
-- [ ] 11 : Intégration d'une mise en forme CSS avec Bootstrap dans les gabarits Twig
-- [ ] 12 : Intégration de menus de navigation
-- [ ] 13 : Ajout de l'entité [galerie] au modèle des données et de l'association M-N avec Panini
-- [ ] 14 : Ajout de [galerie] dans le back-office
-- [ ] 15 : Ajout d'un contrôleur CRUD au front-office pour [galerie]
-- [ ] 16 : Ajout de fonctions CRUD au front-office pour Album
-- [ ] 17 : Ajout de la consultation des Paninis depuis les [galeries] publiques
+- [x] 10 : Utilisation de gabarits pour les pages de consultation du front-office
+    - [x] Consultation d'un Panini
+    - [x] Consultation de la liste des Paninis d'un Album
+    - [x] Navigation d'un Album vers la consultation de ses Paninis
+- [x] 11 : Intégration d'une mise en forme CSS avec Bootstrap dans les gabarits Twig
+- [x] 12 : Intégration de menus de navigation
+- [x] 13 : Ajout de l'entité [galerie] au modèle des données et de l'association M-N avec Panini
+- [x] 14 : Ajout de [galerie] dans le back-office
+- [x] 15 : Ajout d'un contrôleur CRUD au front-office pour [galerie]
+- [x] 16 : Ajout de fonctions CRUD au front-office pour Album
+- [x] 17 : Ajout de la consultation des Paninis depuis les [galeries] publiques
 - [ ] 18 : Ajout d'un contrôleur CRUD pour Membres
 - [ ] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
 - [ ] 20 : Contextualisation de la création d'Album en fonction du Membre
