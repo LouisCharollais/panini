@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('membre_create_album', {'id': membre.id}) }}" onsubmit="return confirm('Etes-vous sûr de supprimer?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ membre.id) }}">
+    <button class="btn">Supprimer</button>
+</form>

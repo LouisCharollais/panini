@@ -67,7 +67,7 @@
                 <th>Albums</th>
                 <td>
                 {% for album in membre.albums %}
-                <li><a href="{{ path('album', {'id' : album.id}) }}">{{ album.nom }}</a></li>
+                <li><a href="{{ path('album_show', {'album_id' : album.id, 'membre_id' : membre.id})}}">{{ album.nom }}</a></li>
                 {% endfor %}
                 </td>
             </tr>

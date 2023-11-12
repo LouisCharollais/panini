@@ -18,7 +18,7 @@
             <tr>
                 <td>{{ album.nom }}</td>
                 <td>
-                    <a href="{{ path('album_show', {'id': album.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                    <a href="{{ path('album_show', {'album_id': album.id, 'membre_id' : album.membre.id}) }}" class="btn btn-primary btn-sm">Voir</a>
                     <a href="{{ path('album_edit', {'id': album.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
                     <a href="{{ path('album_delete', {'id': album.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>

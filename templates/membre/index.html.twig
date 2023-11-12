@@ -22,7 +22,7 @@
                     <td>{{ membre.nom }}</td>
                     <td>{{ membre.prenom }}</td>
                     <td>
-                        <a href="{{ path('membre_show', {'id': membre.id}) }}" class="btn-primary btn-sm-blue">Voir</a>
+                        <a href="{{ path('membre_show', {'membre_id': membre.id}) }}" class="btn-primary btn-sm-blue">Voir</a>
                         <a href="{{ path('membre_edit', {'id': membre.id}) }}" class="btn-primary btn-sm-yellow">Modifier</a>
                     </td>
                 </tr>

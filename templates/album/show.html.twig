@@ -32,7 +32,7 @@
         </table>
 
         <br>
-        <a href="{{ path('album') }}" class="btn-primary btn-sm">Retour à la liste des albums</a>
+        <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste des albums</a>
 
 
     {{ include('album/_delete_form.html.twig') }}

@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Membre;
 use App\Form\MembreType;
+use App\Entity\Album;
+use App\Form\AlbumType;
 use App\Repository\MembreRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,9 +45,11 @@ class MembreController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'membre_show', methods: ['GET'])]
-    public function show(Membre $membre): Response
+    #[Route('/{membre_id}', name: 'membre_show', requirements: ['membre_id' => '\d+'])]
+    public function show(ManagerRegistry $doctrine, $membre_id): Response
     {
+        $entity_manager = $doctrine->getManager();
+        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
         return $this->render('membre/show.html.twig', [
             'membre' => $membre,
         ]);
@@ -77,5 +82,26 @@ class MembreController extends AbstractController
         }
 
         return $this->redirectToRoute('membre_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/create_album',name: 'membre_create_album', methods: ['GET', 'POST'])]
+    public function createAlbum(Request $request, Membre $membre, EntityManagerInterface $entityManager): Response
+    {
+        $album = new Album();
+        $form = $this->createForm(AlbumType::class, $album);
+        $form->handleRequest($request);
+        $album->setMembre($membre);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($album);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('membre_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('/create/album.html.twig', [
+            'album' => $album,
+            'form' => $form,
+        ]);
     }
 }

@@ -24,7 +24,9 @@ class EquipeType extends AbstractType
             ->add('Paninis', EntityType::class, [
                 'class' => 'App\Entity\Panini',
                 'choice_label' => 'nom',
+                'by_reference' => false,
                 'multiple' => true,
+                'expanded' => true,
                 'query_builder' => function (PaniniRepository $er) use ($membre) {
                                                 return $er->createQueryBuilder('o')
                                                     ->leftJoin('o.album', 'i')

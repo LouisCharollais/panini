@@ -2,18 +2,3 @@ bootstrap_menu:
   menus:
     main:
       items:
-        albums:
-          label: 'Albums'
-          route: 'album'
-
-        paninis:
-          label: 'Paninis'
-          route: 'panini_all'
-
-        equipes:
-          label: 'Equipes'
-          route: 'equipe_index'
-
-        membres:
-          label: 'Membres'
-          route: 'membre_index'

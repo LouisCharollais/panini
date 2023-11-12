@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <th>Album</th>
-                <td><a href="{{ path('album_show', {'id': panini.album.id}) }}">{{ panini.album.nom }}</a></td>
+                <td><a href="{{ path('album_show', {'album_id': panini.album.id, 'membre_id' : panini.album.membre.id} ) }}">{{ panini.album.nom }}</a></td>
             </tr>
             <tr>
                 <th>Equipes</th>

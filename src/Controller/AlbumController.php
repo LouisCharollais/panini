@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Form\AlbumType;
+use App\Entity\Membre;
+use App\Form\MembreType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,31 +15,40 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class AlbumController extends AbstractController
 {
-    #[Route('/album', name: 'album')]
-    public function index(ManagerRegistry $doctrine): Response
+    #[Route('/membre/{membre_id}/album', name: 'album')]
+    public function index(ManagerRegistry $doctrine, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
-        $albums = $entity_manager->getRepository(Album::class)->findAll();
+        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
+
+        if (!$membre) {
+            throw $this->createNotFoundException(
+                'No membre found for id '.$membre_id
+            );
+        }
+        $albums = $membre->getAlbums();
 
         return $this->render('album/index.html.twig', [
             'albums' => $albums,
         ]);
     }
 
-    #[Route('/album/{id}', name: 'album_show', requirements: ['id' => '\d+'])]
-    public function show(ManagerRegistry $doctrine, $id): Response
+    #[Route('membre/{membre_id}/album/{album_id}', name: 'album_show', requirements: ['album_id' => '\d+', 'membre_id' => '\d+'])]
+    public function show(ManagerRegistry $doctrine, $album_id, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
-        $album = $entity_manager->getRepository(Album::class)->find($id);
+        $album = $entity_manager->getRepository(Album::class)->find($album_id);
+        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
 
         if (!$album) {
             throw $this->createNotFoundException(
-                'No album found for id '.$id
+                'No album found for id '.$album_id
             );
         }
 
         return $this->render('album/show.html.twig', [
             'album' => $album,
+            'membre' => $membre,
         ]);
     }
 
