@@ -9,7 +9,7 @@
 
         {{ include('album/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-        <a href="{{ path('album') }}" class="btn btn-secondary">Retour à la liste d'album</a>
+        <a href="{{ path('album') }}" class="btn btn-secondary btn-sm">Retour à la liste d'album</a>
 
         {{ include('album/_delete_form.html.twig') }}
     </div>
@@ -63,12 +63,22 @@
             background-color: #218838;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn-sm {
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #999;
+            color: #000;
+            border: 5px solid #999;
+            cursor: pointer;
+            text-decoration: none;
         }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .btn-sm:hover {
+            background-color: #777;
+            border-color: #777;
+            color: #000;
+            text-decoration: none;
         }
     </style>
 {% endblock %}
