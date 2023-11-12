@@ -47,36 +47,18 @@
         }
     </style>
 
-    <h1>{{ membre.nom }}</h1>
+    <h1>{{ membre.prenom }}  {{ membre.nom }}</h1>
+    <h2>Liste des Albums</h2>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ membre.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ membre.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ membre.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Albums</th>
-                <td>
-                {% for album in membre.albums %}
-                <li><a href="{{ path('album_show', {'album_id' : album.id, 'membre_id' : membre.id})}}">{{ album.nom }}</a></li>
-                {% endfor %}
-                </td>
-            </tr>
-        </tbody>
+        <td>
+        {% for album in membre.albums %}
+            <li><a href="{{ path('album_show', {'album_id' : album.id, 'membre_id' : membre.id})}}">{{ album.nom }}</a></li>
+        {% endfor %}
+        </td>
     </table>
 
     <a href="{{ path('membre_index') }}" class="btn-primary btn-sm">Retour vers la liste des membres</a>
-
-    <a href="{{ path('membre_edit', {'id': membre.id}) }}" class="btn-primary btn-sm-yellow">Modifier</a>
 
     <style>
         .btn-sm {

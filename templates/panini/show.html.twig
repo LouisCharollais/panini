@@ -71,7 +71,9 @@
         </table>
 
         <br>
-        <a href="{{ path('panini_all') }}" class="btn-primary btn-sm">Retour à la liste des paninis</a>
+        <a href="{{ path('album_show',{'album_id' : panini.album.id, 'membre_id' : panini.album.membre.id}) }}" class="btn-primary btn-sm">
+            {{ panini.album.nom}}</a>
+        <a href="{{ path('membre_show',{'membre_id' : panini.album.membre.id}) }}" class="btn-primary btn-sm">Mes albums</a>
     </div>
 
     <style>
