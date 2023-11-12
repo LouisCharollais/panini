@@ -25,6 +25,10 @@ class Panini
     #[ORM\ManyToMany(targetEntity: Equipe::class, mappedBy: 'paninis')]
     private Collection $equipes;
 
+    #[ORM\ManyToOne(inversedBy: 'paninis')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Membre $membre = null;
+
     public function __construct()
     {
         $this->equipes = new ArrayCollection();
@@ -87,6 +91,18 @@ class Panini
         if ($this->equipes->removeElement($equipe)) {
             $equipe->removePanini($this);
         }
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): static
+    {
+        $this->membre = $membre;
 
         return $this;
     }

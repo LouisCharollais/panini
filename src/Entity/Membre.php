@@ -27,10 +27,14 @@ class Membre
     #[ORM\OneToMany(mappedBy: 'createur', targetEntity: Equipe::class)]
     private Collection $equipes;
 
+    #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Panini::class, orphanRemoval: true)]
+    private Collection $paninis;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
         $this->equipes = new ArrayCollection();
+        $this->paninis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,6 +129,36 @@ class Membre
             // set the owning side to null (unless already changed)
             if ($equipe->getCreateur() === $this) {
                 $equipe->setCreateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Panini>
+     */
+    public function getPaninis(): Collection
+    {
+        return $this->paninis;
+    }
+
+    public function addPanini(Panini $panini): static
+    {
+        if (!$this->paninis->contains($panini)) {
+            $this->paninis->add($panini);
+            $panini->setMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanini(Panini $panini): static
+    {
+        if ($this->paninis->removeElement($panini)) {
+            // set the owning side to null (unless already changed)
+            if ($panini->getMembre() === $this) {
+                $panini->setMembre(null);
             }
         }
 
