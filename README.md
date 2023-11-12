@@ -28,8 +28,8 @@ Rouge : #dc3545
 Rouge foncé : #c82333
 Jaune : #ffc107
 Jaune foncé : #e0a800
-Gris : #777
-Gris foncé : #555
+Gris : #999
+Gris foncé : #777
 
 !! bien refaire la page edit !!
 

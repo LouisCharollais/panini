@@ -69,5 +69,70 @@
                 </td>
             </tr>
         </table>
+
+        <br>
+        <a href="{{ path('panini_all') }}" class="btn-primary btn-sm">Retour à la liste des paninis</a>
     </div>
+
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .btn-sm {
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #999;
+            color: #000;
+            border: 5px solid #999;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm:hover {
+            background-color: #777;
+            border-color: #777;
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
+
 {% endblock %}

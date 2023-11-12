@@ -74,9 +74,30 @@
             </tr>
         </table>
 
-        <a href="{{ path('equipe_index') }}">Retour à la liste des équipes</a>
+        <br>
+        <a href="{{ path('equipe_index') }}" class="btn-primary btn-sm">Retour à la liste des équipes</a>
 
         {{ include('equipe/_delete_form.html.twig') }}
     </div>
+
+    <style>
+        .btn-sm {
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #999;
+            color: #000;
+            border: 5px solid #999;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm:hover {
+            background-color: #777;
+            border-color: #777;
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
 {% endblock %}
 

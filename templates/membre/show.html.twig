@@ -74,9 +74,47 @@
         </tbody>
     </table>
 
-    <a href="{{ path('membre_index') }}">Retour vers la liste des membres</a>
+    <a href="{{ path('membre_index') }}" class="btn-primary btn-sm">Retour vers la liste des membres</a>
 
-    <a href="{{ path('membre_edit', {'id': membre.id}) }}">Modifier</a>
+    <a href="{{ path('membre_edit', {'id': membre.id}) }}" class="btn-primary btn-sm-yellow">Modifier</a>
+
+    <style>
+        .btn-sm {
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #999;
+            color: #000;
+            border: 5px solid #999;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm:hover {
+            background-color: #777;
+            border-color: #777;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .btn-sm-yellow {
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #ffc107;
+            color: #000;
+            border: 5px solid #ffc107;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-sm-yellow:hover {
+            background-color: #e0a800;
+            border-color: #e0a800;
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
 
     {{ include('membre/_delete_form.html.twig') }}
 {% endblock %}
