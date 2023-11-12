@@ -26,7 +26,7 @@ class Panini
     private Collection $equipes;
 
     #[ORM\ManyToOne(inversedBy: 'paninis')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Membre $membre = null;
 
     public function __construct()
