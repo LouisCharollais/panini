@@ -26,6 +26,25 @@ class EquipeController extends AbstractController
         ]);
     }
 
+    #[Route('membre/{membre_id}/equipe/{equipe_id}', name: 'equipe_show', requirements: ['equipe_id' => '\d+', 'membre_id' => '\d+'])]
+    public function show(ManagerRegistry $doctrine, $equipe_id, $membre_id): Response
+    {
+        $entity_manager = $doctrine->getManager();
+        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
+        $equipe = $entity_manager->getRepository(Equipe::class)->find($equipe_id);
+
+        if (!$equipe) {
+            throw $this->createNotFoundException(
+                'No equipe found for id '.$equipe
+            );
+        }
+
+        return $this->render('equipe/show.html.twig', [
+            'equipe' => $equipe,
+            'membre' => $membre,
+        ]);
+    }
+
     #[Route('/membre/{membre_id}/equipe/new', name: 'equipe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, $membre_id): Response
     {
@@ -50,43 +69,6 @@ class EquipeController extends AbstractController
         ]);
     }
 
-    #[Route('/membre/{membre_id}/equipe/{equipe_id}', name: 'equipe_show', methods: ['GET'])]
-    public function show($equipe_id, $membre_id, ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
-        $equipe = $entityManager->getRepository(Equipe::class)->find($equipe_id);
-
-        if (!$equipe) {
-            throw $this->createNotFoundException(
-                'No equipe found for id '.$equipe_id
-            );
-        }
-
-        return $this->render('equipe/show.html.twig', [
-            'equipe' => $equipe,
-            'membre' => $membre,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'equipe_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Equipe $equipe, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(EquipeType::class, $equipe);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('equipe_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('equipe/edit.html.twig', [
-            'equipe' => $equipe,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/membre/{membre_id}/equipe/{equipe_id}/delete', name: 'equipe_delete', requirements: ['equipe_id' => '\d+'])]
     public function delete(ManagerRegistry $doctrine, $membre_id, $equipe_id): Response
     {
@@ -106,24 +88,25 @@ class EquipeController extends AbstractController
         return $this->redirectToRoute('membre_show', ['membre_id' => $membre_id], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{equipe_id}/panini/{panini_id}', name: 'equipe_panini_show', methods: ['GET'])]
-    public function paniniShow(
-       #[MapEntity(id: 'equipe_id')]
-       Equipe $equipe,
-       #[MapEntity(id: 'panini_id')]
-       Panini $panini
-   ): Response
-   {
-       if(! $equipe->getPaninis()->contains($panini)) {
-           throw $this->createNotFoundException("Ce panini n'a pas été trouvé dans cette équipe");
-       }
+    #[Route('/membre/{membre_id}/equipe/{equipe_id}/edit', name: 'equipe_edit', requirements: ['equipe_id' => '\d+'])]
+    public function edit(Request $request, $equipe_id, $membre_id, EntityManagerInterface $entityManager): Response
+    {
+        $equipe = $entityManager->getRepository(Equipe::class)->find($equipe_id);
+        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
+        $form = $this->createForm(EquipeType::class, $equipe);
+        $form->handleRequest($request);
 
-       if(! $equipe->isPublished()) {
-           throw $this->createAccessDeniedException("Vous n'avez pas l'accès à cette ressource");
-       }
-       return $this->render('equipe/panini_show.html.twig', [
-           'panini' => $panini,
-           'equipe' => $equipe
-       ]);
-   }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('equipe_show', ['membre_id' => $membre_id, 'album_id' => $equipe_id], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('equipe/edit.html.twig', [
+            'equipe' => $equipe,
+            'form' => $form,
+            'membre' => $membre,
+        ]);
+    }
 }

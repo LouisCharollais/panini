@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier l'équipe{% endblock %}
+{% block title %}Ajouter un panini{% endblock %}
 
 {% block body %}
-    {{  parent() }}
+    {{parent()}}
     <div class="container">
-        <h1>Modifier l'équipe</h1>
+        <h1>Ajouter un panini</h1>
+        <h2>{{ equipe.nom }}</h2>
 
         {{ include('equipe/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-        <a href="{{ path('equipe_index') }}" class="btn btn-secondary">Retour à la liste des équipes</a>
+        <a href="{{ path('equipe_show', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn btn-secondary btn-sm">Retour à la liste d'album</a>
 
-        {{ include('equipe/_delete_form.html.twig') }}
     </div>
     <style>
         body {
@@ -63,12 +63,22 @@
             background-color: #218838;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn-sm {
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: #999;
+            color: #000;
+            border: 5px solid #999;
+            cursor: pointer;
+            text-decoration: none;
         }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .btn-sm:hover {
+            background-color: #777;
+            border-color: #777;
+            color: #000;
+            text-decoration: none;
         }
     </style>
 {% endblock %}

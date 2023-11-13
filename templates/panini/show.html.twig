@@ -61,7 +61,7 @@
                 <td>
                     <ul>
                         {% for equipe in panini.equipes %}
-                            <li><a href="{{ path('equipe_show', {'id': equipe.id}) }}">{{ equipe.nom }}</a></li>
+                            <li><a href="{{ path('equipe_show', {'equipe_id' : equipe.id, 'membre_id' : panini.album.membre.id}) }}">{{ equipe.nom }}</a></li>
                         {% else %}
                             <li>Aucune équipe</li>
                         {% endfor %}

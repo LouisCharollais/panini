@@ -1,9 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon équipe{% endblock %}
+{% block title %}Mon Equipe{% endblock %}
 
 {% block body %}
-    {{ parent() }}
+    {{ parent()}}
+    <div class="container">
+        <h1>Mon Equipe</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>{{ equipe.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ equipe.nom }}</td>
+            </tr>
+            <tr>
+                <th>Membre</th>
+                <td>{{ equipe.createur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Cartes</th>
+                <td>
+                    <ul>
+                        {% for carte in equipe.paninis %}
+                            <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste des albums</a>
+
+
+        <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
+        <a href="{{ path('equipe_edit', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Ajouter/Retirer un panini</a>
+    </div>
+
     <style>
         .container {
             max-width: 800px;
@@ -45,41 +80,7 @@
             text-decoration: none;
             color: #007bff;
         }
-    </style>
 
-    <div class="container">
-        <h1>Mon équipe</h1>
-        <table>
-            <tr>
-                <th>ID</th>
-                <td>{{ equipe.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ equipe.nom }}</td>
-            </tr>
-            <tr>
-                <th>Propriétaire</th>
-                <td>{{ equipe.createur.nom }}</td>
-            </tr>
-            <tr>
-                <th>Cartes</th>
-                <td>
-                    <ul>
-                        {% for carte in equipe.paninis %}
-                            <li><a href="{{ path('equipe_panini_show', { 'equipe_id': equipe.id, 'panini_id': carte.id }) }}">{{ carte.nom }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-        </table>
-
-        <br>
-        <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste des équipes</a>
-        <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
-    </div>
-
-    <style>
         .btn-sm {
             font-size: 15px;
             padding: 5px 10px;
@@ -98,5 +99,5 @@
             text-decoration: none;
         }
     </style>
-{% endblock %}
 
+{% endblock %}
