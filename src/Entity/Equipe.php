@@ -82,7 +82,7 @@ class Equipe
         return $this;
     }
 
-    public function isPublished()
+    public function isPublished(): bool
     {
         return $this->getCreateur() !== null;
     }

@@ -22,7 +22,7 @@ class EquipeController extends AbstractController
     public function index(EquipeRepository $equipeRepository): Response
     {
         return $this->render('equipe/index.html.twig', [
-            'equipes' => $equipeRepository->findAll(),
+            'equipes' => $equipeRepository->findBy(['published'=>true]),
         ]);
     }
 
