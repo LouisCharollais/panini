@@ -11,7 +11,7 @@
         {{ include('album/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
         <a href="{{ path('album_show', {'album_id' : album.id, 'membre_id' : membre.id}) }}" class="btn btn-secondary btn-sm">Retour à la liste d'album</a>
-
+        <a href="{{ path('panini_new', {'membre_id' : membre.id, 'album_id' : album.id}) }}">Créer un panini</a>
     </div>
     <style>
         body {

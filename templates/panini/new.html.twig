@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau panini{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>Créer un nouveau panini</h1>
+
+    {{ include('panini/_form.html.twig') }}
+
+    <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}">Retour à la liste</a>
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Panini;
 use App\Entity\Album;
 use App\Entity\Equipe;
 use App\Entity\Membre;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -23,25 +24,29 @@ class PaniniType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $membre = $this->membre;
-        $albums = $this->membre->getAlbums();
+        $albumRef = $options['data'] ?? null;
+        $membre = $albumRef ? $albumRef->getMembre() : $this->membre;
 
         $builder
             ->add('nom')
-            ->add('membre')
+            ->add('membre', EntityType::class, [
+                'class' => Membre::class,
+                'choice_label' => 'nom',
+                'data' => $membre,
+                'disabled' => true,
+                'required' => true,
+            ])
+
             ->add('album', EntityType::class, [
                 'class' => Album::class,
-                'choices' => $albums,
+                'query_builder' => function (EntityRepository $er) use ($membre) {
+                    return $er->createQueryBuilder('a')
+                        ->andWhere('a.membre = :membre')
+                        ->setParameter('membre', $membre);
+                },
                 'choice_label' => 'nom',
                 'placeholder' => 'Choisir un album',
-                'required' => true,])
-            -> add('equipes', EntityType::class, [
-                'class' => Equipe::class,
-                'choices' => $membre ? $membre->getEquipes() : [],
-                'choice_label' => 'nom',
-                'placeholder' => 'Choisir une équipe',
-                'required' => false,
-                'multiple' => true,
+                'required' => true,
             ])
         ;
     }

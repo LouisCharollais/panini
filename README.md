@@ -71,9 +71,9 @@ Gris foncé : #777
 - [x] 18 : Ajout d'un contrôleur CRUD pour Membres
 - [x] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
 - [x] 20 : Contextualisation de la création d'Album en fonction du Membre
-- [x] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
+- [ ] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
 - [x] 22 : Contextualisation de la création d'une Equipe en fonction du membre
-- [ ] 23 : Affichage des seules galeries publiques
+- [ ] 23 : Affichage des seules Equipes publiques
 - [x] 24 : Contextualisation de l'ajout d'un Panini à une Equipe
 - [ ] 25 : Ajout des Utilisateurs au modèle de données et du lien utilisateur - membre
 - [ ] 26 : Ajout de l'authentification

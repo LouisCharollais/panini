@@ -6,6 +6,7 @@ use App\Entity\Panini;
 use App\Form\PaniniType;
 use App\Entity\Album;
 use App\Entity\Membre;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,27 +65,40 @@ class PaniniController extends AbstractController
         ]);
     }
 
-    #[Route('/membre/{membre_id}/album/{album_id}/new_panini', 'new_panini', methods: ['GET', 'POST'])]
-public function newPanini(Request $request, ManagerRegistry $doctrine, $membre_id, $album_id)
+    //new panini
+    #[Route('/membre/{membre_id}/album/{album_id}/add_panini/new', name: 'panini_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, $membre_id, $album_id): Response
     {
-        $entity_manager = $doctrine->getManager();
-        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
-        $albums = $membre->getAlbums();
-
-        if (!$albums) {
-            throw $this->createNotFoundException(
-                'No album found for id ' . $album_id
-            );
-        }
-
         $panini = new Panini();
+        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
+        $album = $entityManager->getRepository(Album::class)->find($album_id);
+        $panini->setMembre($membre);
+        $panini->setNom('Nouveau panini');
+        $panini->setAlbum($album);
+        $entityManager->persist($panini);
+        $entityManager->flush();
+
         $form = $this->createForm(PaniniType::class, $panini);
         $form->handleRequest($request);
-        return $this->render('panini/_form.html.twig', [
+
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            //supprimer l'album
+            $entityManager->remove($panini);
+            $entityManager->flush();
+            //message d'erreur
+            $this->addFlash('error', 'Erreur lors de la création du panini');
+        }else{
+            $panini_id = $panini->getId();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('panini_show', ['id' => $panini_id]);
+        }
+
+        return $this->render('panini/new.html.twig', [
             'panini' => $panini,
-            'form' => $form->createView(),
-            'albums' => $albums,
-            'membre' => $membre
+            'album' => $album,
+            'membre' => $membre,
+            'form' => $form,
         ]);
     }
 }

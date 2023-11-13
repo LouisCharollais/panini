@@ -30,6 +30,7 @@ class AlbumController extends AbstractController
 
         return $this->render('album/index.html.twig', [
             'albums' => $albums,
+            'membre' => $membre,
         ]);
     }
 
@@ -122,6 +123,7 @@ class AlbumController extends AbstractController
         return $this->render('album/new.html.twig', [
             'album' => $album,
             'membre_id' => $membre_id,
+            'membre' => $membre,
             'form' => $form,
         ]);
     }

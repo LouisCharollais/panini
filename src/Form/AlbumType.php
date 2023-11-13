@@ -18,24 +18,6 @@ class AlbumType extends AbstractType
 
         $builder
             ->add('nom')
-            ->add('Paninis', EntityType::class, [
-                'class' => 'App\Entity\Panini',
-                'choice_label' => 'nom',
-                'by_reference' => false,
-                'multiple' => true,
-                'expanded' => true,
-                'query_builder' => function (PaniniRepository $paniniRepository) use ($membre, $album) {
-                    return $paniniRepository->createQueryBuilder('p')
-                        ->join('p.album', 'album')
-                        ->join('album.membre', 'membre')
-                        ->where('album = :album')
-                        ->andWhere('membre = :membre')
-                        ->setParameter('album', $album)
-                        ->setParameter('membre', $membre)
-                        ->orderBy('p.nom', 'ASC')
-                    ;
-                },
-            ])
         ;
     }
 
