@@ -49,15 +49,25 @@ class EquipeController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, $membre_id): Response
     {
         $equipe = new Equipe();
+        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
+        $equipe -> setCreateur($membre);
+        $equipe -> setNom('Nouvelle équipe');
+        $entityManager->persist($equipe);
+        $entityManager->flush();
+
         $form = $this->createForm(EquipeType::class, $equipe);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entity_manager = $entityManager->getRepository(Membre::class)->find($membre_id);
-            $equipe->setCreateur($entity_manager);
-            $entityManager->persist($equipe);
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            //supprimer l'équipe
+            $entityManager->remove($equipe);
             $entityManager->flush();
+
+            //message d'erreur
+            $this->addFlash('error', 'Une erreur est survenue lors de la création de l\'équipe');
+        }else{
             $equipe_id = $equipe->getId();
+            $entityManager->flush();
 
             return $this->redirectToRoute('equipe_show', ['membre_id' => $membre_id, 'equipe_id' => $equipe_id]);
         }

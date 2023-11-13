@@ -97,15 +97,24 @@ class AlbumController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, $membre_id): Response
     {
         $album = new Album();
+        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
+        $album->setMembre($membre);
+        $album->setNom('Nouvel album');
+        $entityManager->persist($album);
+        $entityManager->flush();
+
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entity_manager = $entityManager->getRepository(Membre::class)->find($membre_id);
-            $album->setMembre($entity_manager);
-            $entityManager->persist($album);
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            //supprimer l'album
+            $entityManager->remove($album);
             $entityManager->flush();
+            //message d'erreur
+            $this->addFlash('error', 'Erreur lors de la création de l\'album');
+        }else{
             $album_id = $album->getId();
+            $entityManager->flush();
 
             return $this->redirectToRoute('album_show', ['membre_id' => $membre_id, 'album_id' => $album_id]);
         }
