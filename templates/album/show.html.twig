@@ -35,7 +35,7 @@
         <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste des albums</a>
 
 
-    {{ include('album/_delete_form.html.twig') }}
+        <a href="{{ path('album_delete', {'album_id' : album.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
     </div>
 
     <style>

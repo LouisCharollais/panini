@@ -70,21 +70,45 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route('/album/{id}/delete', name: 'album_delete', requirements: ['id' => '\d+'])]
-    public function delete(ManagerRegistry $doctrine, $id): Response
+    #[Route('/membre/{membre_id}/album/{album_id}/delete', name: 'album_delete', requirements: ['album_id' => '\d+'])]
+    public function delete(ManagerRegistry $doctrine, $membre_id, $album_id): Response
     {
         $entity_manager = $doctrine->getManager();
-        $album = $entity_manager->getRepository(Album::class)->find($id);
+        $album = $entity_manager->getRepository(Album::class)->find($album_id);
+        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
 
         if (!$album) {
             throw $this->createNotFoundException(
-                'No album found for id '.$id
+                'No album found for id '.$album_id
             );
         }
 
         $entity_manager->remove($album);
         $entity_manager->flush();
 
-        return $this->redirectToRoute('album');
+        return $this->redirectToRoute('membre_show', ['membre_id' => $membre_id], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/membre/{membre_id}/album/new', name: 'album_new', requirements: ['membre_id' => '\d+'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, $membre_id): Response
+    {
+        $album = new Album();
+        $form = $this->createForm(AlbumType::class, $album);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entity_manager = $entityManager->getRepository(Membre::class)->find($membre_id);
+            $album->setMembre($entity_manager);
+            $entityManager->persist($album);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('album', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('album/new.html.twig', [
+            'album' => $album,
+            'membre_id' => $membre_id,
+            'form' => $form,
+        ]);
     }
 }

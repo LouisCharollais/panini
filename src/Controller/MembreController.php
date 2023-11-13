@@ -83,25 +83,4 @@ class MembreController extends AbstractController
 
         return $this->redirectToRoute('membre_index', [], Response::HTTP_SEE_OTHER);
     }
-
-    #[Route('/{id}/create_album',name: 'membre_create_album', methods: ['GET', 'POST'])]
-    public function createAlbum(Request $request, Membre $membre, EntityManagerInterface $entityManager): Response
-    {
-        $album = new Album();
-        $form = $this->createForm(AlbumType::class, $album);
-        $form->handleRequest($request);
-        $album->setMembre($membre);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($album);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('membre_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('/create/album.html.twig', [
-            'album' => $album,
-            'form' => $form,
-        ]);
-    }
 }
