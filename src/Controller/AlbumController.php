@@ -101,8 +101,9 @@ class AlbumController extends AbstractController
             $album->setMembre($entity_manager);
             $entityManager->persist($album);
             $entityManager->flush();
+            $album_id = $album->getId();
 
-            return $this->redirectToRoute('album', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('album_show', ['membre_id' => $membre_id, 'album_id' => $album_id]);
         }
 
         return $this->render('album/new.html.twig', [

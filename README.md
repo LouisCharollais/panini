@@ -70,7 +70,7 @@ Gris foncé : #777
 - [x] 17 : Ajout de la consultation des Paninis depuis les Equipes publiques
 - [x] 18 : Ajout d'un contrôleur CRUD pour Membres
 - [x] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
-- [ ] 20 : Contextualisation de la création d'Album en fonction du Membre
+- [x] 20 : Contextualisation de la création d'Album en fonction du Membre
 - [ ] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
 - [ ] 22 : Contextualisation de la création d'une Equipe en fonction du membre
 - [ ] 23 : Affichage des seules galeries publiques
@@ -84,3 +84,55 @@ Gris foncé : #777
 - [ ] 31 : Ajout de la gestion de la mise en ligne d'images pour des photos dans les Paninis
 - [ ] 32 : Utilisation des messages flash pour les CRUDs
 - [ ] 33 : Ajout d'une gestion de marque-pages/panier dans le front-office
+
+<?php
+
+namespace App\Form;
+
+use App\Entity\Panini;
+use App\Entity\Album;
+use App\Entity\Equipe;
+use App\Entity\Membre;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class PaniniType extends AbstractType
+{
+    private Membre $membre;
+    private ArrayCollection $albums;
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $albums = $options['albums'];
+        $membre = $options['membre'];
+
+        $builder
+            ->add('nom')
+            ->add('membre')
+            ->add('album', EntityType::class, [
+                'class' => Album::class,
+                'choices' => $albums,
+                'choice_label' => 'nom',
+                'placeholder' => 'Choisir un album',
+                'required' => true,])
+            -> add('equipes', EntityType::class, [
+                'class' => Equipe::class,
+                'choices' => $membre ? $membre->getEquipes() : [],
+                'choice_label' => 'nom',
+                'placeholder' => 'Choisir une équipe',
+                'required' => false,
+                'multiple' => true,
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Panini::class,
+        ]);
+    }
+}
