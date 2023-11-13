@@ -28,9 +28,35 @@
         </tbody>
     </table>
 
-    <a href="{{ path('membre_index') }}" class="btn-primary btn-sm">Retour vers la liste des membres</a>
-
     <a href="{{ path('album_new', {'membre_id' : membre.id}) }}" class="btn-primary btn-green">Créer un album</a>
+    </div>
+
+    <div class="container">
+        <h2 class="mt-5">Liste des Equipes</h2>
+
+        <table class="table table-bordered mt-3">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for equipe in membre.equipes %}
+                <tr>
+                    <td>{{equipe.nom}}</td>
+                    <td>
+                        <a href="{{ path('equipe_show', {'equipe_id' : equipe.id, 'membre_id' : membre.id})}}" class="btn-sm">Voir</a>
+                        <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('membre_index') }}" class="btn-primary btn-sm">Retour vers la liste des membres</a>
+
+        <a href="{{ path('equipe_new', {'membre_id' : membre.id}) }}" class="btn-primary btn-green">Créer une équipe</a>
     </div>
 
     <style>

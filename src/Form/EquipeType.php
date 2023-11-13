@@ -13,29 +13,19 @@ class EquipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        //dump($options);
         $equipe = $options['data'] ?? null;
         $membre = $equipe->getCreateur();
 
         $builder
-            ->add('createur', null, [
-                'disabled'   => true,
-            ])
+            ->add('nom')
             ->add('Paninis', EntityType::class, [
                 'class' => 'App\Entity\Panini',
                 'choice_label' => 'nom',
                 'by_reference' => false,
                 'multiple' => true,
                 'expanded' => true,
-                'query_builder' => function (PaniniRepository $er) use ($membre) {
-                                                return $er->createQueryBuilder('o')
-                                                    ->leftJoin('o.album', 'i')
-                                                    ->andWhere('i.membre = :membre')
-                                                    ->setParameter('membre', $membre)
-                                                    ;
-                                                }
-                                                ])
-                ;
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

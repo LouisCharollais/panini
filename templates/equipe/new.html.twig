@@ -8,5 +8,5 @@
 
     {{ include('equipe/_form.html.twig') }}
 
-    <a href="{{ path('equipe_index') }}">Retour à la liste</a>
+    <a href="{{ path('membre_show', {'membre_id' : membre_id}) }}">Retour à la liste</a>
 {% endblock %}

@@ -75,9 +75,8 @@
         </table>
 
         <br>
-        <a href="{{ path('equipe_index') }}" class="btn-primary btn-sm">Retour à la liste des équipes</a>
-
-        {{ include('equipe/_delete_form.html.twig') }}
+        <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste des équipes</a>
+        <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
     </div>
 
     <style>
