@@ -37,8 +37,8 @@ class AlbumController extends AbstractController
     public function show(ManagerRegistry $doctrine, $album_id, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
-        $album = $entity_manager->getRepository(Album::class)->find($album_id);
         $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
+        $album = $entity_manager->getRepository(Album::class)->find($album_id);
 
         if (!$album) {
             throw $this->createNotFoundException(
@@ -52,21 +52,25 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route('/album/{id}/edit', name: 'album_edit', requirements: ['id' => '\d+'])]
-    public function edit(Request $request, Album $album, EntityManagerInterface $entityManager): Response
+    #[Route('/membre/{membre_id}/album/{album_id}/edit', name: 'album_edit', requirements: ['album_id' => '\d+'])]
+    public function edit(Request $request, $album_id, $membre_id, EntityManagerInterface $entityManager): Response
     {
+        $album = $entityManager->getRepository(Album::class)->find($album_id);
+        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('album', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('album_show', ['membre_id' => $membre_id, 'album_id' => $album_id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('album/edit.html.twig', [
             'album' => $album,
             'form' => $form,
+            'membre' => $membre,
         ]);
     }
 

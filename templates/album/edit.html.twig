@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier l'album{% endblock %}
+{% block title %}Ajouter un panini{% endblock %}
 
 {% block body %}
     {{parent()}}
     <div class="container">
-        <h1>Modifier l'album</h1>
+        <h1>Ajouter un panini</h1>
+        <h2>{{ album.nom }}</h2>
 
         {{ include('album/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-        <a href="{{ path('album') }}" class="btn btn-secondary btn-sm">Retour à la liste d'album</a>
+        <a href="{{ path('album_show', {'album_id' : album.id, 'membre_id' : membre.id}) }}" class="btn btn-secondary btn-sm">Retour à la liste d'album</a>
 
-        {{ include('album/_delete_form.html.twig') }}
     </div>
     <style>
         body {

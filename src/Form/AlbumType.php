@@ -17,9 +17,6 @@ class AlbumType extends AbstractType
         $membre = $album->getMembre();
 
         $builder
-            ->add('nom')
-            ->add('membre')
-
             ->add('Paninis', EntityType::class, [
                 'class' => 'App\Entity\Panini',
                 'choice_label' => 'nom',
