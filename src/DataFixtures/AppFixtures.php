@@ -18,6 +18,11 @@ class AppFixtures extends Fixture
         $membre->setPrenom('test_prenom');
         $membre->__construct();
 
+        $membre_1 = new Membre();
+        $membre_1->setNom('test_nom_1');
+        $membre_1->setPrenom('test_prenom_1');
+        $membre_1->__construct();
+
         $album = new Album();
         $album->__construct();
         $album->setNom('album_test');
@@ -41,6 +46,7 @@ class AppFixtures extends Fixture
         $equipe_1->setCreateur($membre);
 
         $manager->persist($membre);
+        $manager->persist($membre_1);
         $manager->persist($album);
         $manager->persist($panini_1);
         $manager->persist($panini_2);
