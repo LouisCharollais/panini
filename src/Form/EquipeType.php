@@ -24,6 +24,17 @@ class EquipeType extends AbstractType
                 'by_reference' => false,
                 'multiple' => true,
                 'expanded' => true,
+                'query_builder' => function (PaniniRepository $paniniRepository) use ($membre, $equipe) {
+                    return $paniniRepository->createQueryBuilder('p')
+                        ->join('p.equipes', 'equipe')
+                        ->join('equipe.createur', 'membre')
+                        ->where('equipe = :equipe')
+                        ->andWhere('membre = :membre')
+                        ->setParameter('equipe', $equipe)
+                        ->setParameter('membre', $membre)
+                        ->orderBy('p.nom', 'ASC')
+                        ;
+                },
             ])
         ;
     }
