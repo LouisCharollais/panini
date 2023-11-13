@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Equipe;
 use App\Repository\PaniniRepository;
+use Doctrine\ORM\EntityRepository;
+use App\Entity\Panini;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,28 +16,34 @@ class EquipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $equipe = $options['data'] ?? null;
-        $membre = $equipe->getCreateur();
+        $createur = $equipe->getCreateur();
 
         $builder
-            ->add('nom')
-            ->add('Paninis', EntityType::class, [
-                'class' => 'App\Entity\Panini',
+            ->add('nom', EntityType::class,[
+                'class' => 'App\Entity\Equipe',
                 'choice_label' => 'nom',
-                'by_reference' => false,
+                    'data' => $equipe,
+                    'disabled' => true,
+                    'required' => true,
+                ]
+            )
+            ->add('paninis', EntityType::class, [
+                'class' => Panini::class,
+                'query_builder' => function (PaniniRepository $er) use ($createur) {
+                    return $er->createQueryBuilder('panini')
+                        ->join('panini.album', 'album')
+                        ->join('album.membre', 'membre')
+                        ->andWhere('membre = :createur')
+                        ->setParameter('createur', $createur);
+                },
+                'choice_label' => 'nom',
+                'placeholder' => 'Choisir un panini',
+                'required' => false,
                 'multiple' => true,
                 'expanded' => true,
-                'query_builder' => function (PaniniRepository $paniniRepository) use ($membre, $equipe) {
-                    return $paniniRepository->createQueryBuilder('p')
-                        ->join('p.equipes', 'equipe')
-                        ->join('equipe.createur', 'membre')
-                        ->where('equipe = :equipe')
-                        ->andWhere('membre = :membre')
-                        ->setParameter('equipe', $equipe)
-                        ->setParameter('membre', $membre)
-                        ->orderBy('p.nom', 'ASC')
-                        ;
-                },
-            ])
+            ]);
+
+
         ;
     }
 
