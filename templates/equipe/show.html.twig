@@ -3,14 +3,10 @@
 {% block title %}Mon Equipe{% endblock %}
 
 {% block body %}
-    {{ parent()}}
+    {{ parent() }}
     <div class="container">
         <h1>Mon Equipe</h1>
-        <table>
-            <tr>
-                <th>ID</th>
-                <td>{{ equipe.id }}</td>
-            </tr>
+        <table class="panini-table">
             <tr>
                 <th>Nom</th>
                 <td>{{ equipe.nom }}</td>
@@ -22,10 +18,12 @@
             <tr>
                 <th>Cartes</th>
                 <td>
-                    <ul>
+                    <ul class="panini-list">
                         {% for carte in equipe.paninis %}
-                            <li><img src="{{ vich_uploader_asset(carte, 'image') }}">
-                            <a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a>
+                            <li>
+                                <a href="{{ path('panini_show', { 'id': carte.id }) }}">
+                                    <img src="{{ vich_uploader_asset(carte, 'image') }}" alt="{{ carte.nom }}" class="panini-image">
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -35,9 +33,7 @@
 
         <br>
         <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste</a>
-
-
-        <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
+        <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Supprimer</a>
         <a href="{{ path('equipe_edit', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Ajouter/Retirer un panini</a>
     </div>
 
@@ -54,9 +50,10 @@
             margin-bottom: 20px;
         }
 
-        table {
+        table.panini-table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
@@ -69,13 +66,17 @@
             background-color: #f2f2f2;
         }
 
-        ul {
+        ul.panini-list {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         li {
             margin-bottom: 10px;
+            flex: 0 0 30%; /* Ajustez la largeur des images en fonction de vos besoins */
         }
 
         a {
@@ -99,6 +100,12 @@
             border-color: #777;
             color: #000;
             text-decoration: none;
+        }
+
+        .panini-image {
+            width: 100%; /* Ajustez la largeur des images en fonction de vos besoins */
+            height: auto;
+            border: 1px solid #ddd;
         }
     </style>
 

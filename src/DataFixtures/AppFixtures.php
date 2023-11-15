@@ -175,148 +175,142 @@ class AppFixtures extends Fixture
         $album_1->addPanini($panini_25);
 
         $panini_26 = new Panini();
-        $panini_26->setNom('Weverton');
+        $panini_26->setNom('Alex Sandro');
         $panini_26->setAlbum($album_1);
-        $panini_26->setImageName('weverton.jpg');
+        $panini_26->setImageName('alex_sandro.jpg');
         $album_1->addPanini($panini_26);
 
         $panini_27 = new Panini();
-        $panini_27->setNom('Alex Sandro');
+        $panini_27->setNom('Bremer Souza');
         $panini_27->setAlbum($album_1);
-        $panini_27->setImageName('alex_sandro.jpg');
+        $panini_27->setImageName('bremer_souza.jpg');
         $album_1->addPanini($panini_27);
 
         $panini_28 = new Panini();
-        $panini_28->setNom('Bremer Souza');
+        $panini_28->setNom('Dani Alves');
         $panini_28->setAlbum($album_1);
-        $panini_28->setImageName('bremer_souza.jpg');
+        $panini_28->setImageName('dani_alves.jpg');
         $album_1->addPanini($panini_28);
 
         $panini_29 = new Panini();
-        $panini_29->setNom('Dani Alves');
+        $panini_29->setNom('Danilo');
         $panini_29->setAlbum($album_1);
-        $panini_29->setImageName('dani_alves.jpg');
+        $panini_29->setImageName('danilo.jpg');
         $album_1->addPanini($panini_29);
 
         $panini_30 = new Panini();
-        $panini_30->setNom('Danilo');
+        $panini_30->setNom('Marquinhos');
         $panini_30->setAlbum($album_1);
-        $panini_30->setImageName('danilo.jpg');
+        $panini_30->setImageName('marquinhos.jpg');
         $album_1->addPanini($panini_30);
 
         $panini_31 = new Panini();
-        $panini_31->setNom('Marquinhos');
+        $panini_31->setNom('Eder Militão');
         $panini_11->setAlbum($album_1);
-        $panini_31->setImageName('marquinhos.jpg');
+        $panini_31->setImageName('eder_militao.jpg');
         $album_1->addPanini($panini_31);
 
         $panini_32 = new Panini();
-        $panini_32->setNom('Eder Militão');
+        $panini_32->setNom('Alex Telles');
         $panini_32->setAlbum($album_1);
-        $panini_32->setImageName('eder_militao.jpg');
+        $panini_32->setImageName('alex_telles.jpg');
         $album_1->addPanini($panini_32);
 
         $panini_33 = new Panini();
-        $panini_33->setNom('Alex Telles');
+        $panini_33->setNom('Thiago Silva');
         $panini_33->setAlbum($album_1);
-        $panini_33->setImageName('alex_telles.jpg');
+        $panini_33->setImageName('thiago_silva.jpg');
         $album_1->addPanini($panini_33);
 
         $panini_34 = new Panini();
-        $panini_34->setNom('Thiago Silva');
+        $panini_34->setNom('Casemiro');
         $panini_34->setAlbum($album_1);
-        $panini_34->setImageName('thiago_silva.jpg');
+        $panini_34->setImageName('casemiro.jpg');
         $album_1->addPanini($panini_34);
 
         $panini_35 = new Panini();
-        $panini_35->setNom('Casemiro');
+        $panini_35->setNom('Everton Ribeiro');
         $panini_35->setAlbum($album_1);
-        $panini_35->setImageName('casemiro.jpg');
+        $panini_35->setImageName('everton_ribeiro.jpg');
         $album_1->addPanini($panini_35);
 
         $panini_36 = new Panini();
-        $panini_36->setNom('Everton Ribeiro');
+        $panini_36->setNom('Fabinho');
         $panini_36->setAlbum($album_1);
-        $panini_36->setImageName('everton_ribeiro.jpg');
+        $panini_36->setImageName('fabinho.jpg');
         $album_1->addPanini($panini_36);
 
         $panini_37 = new Panini();
-        $panini_37->setNom('Fabinho');
+        $panini_37->setNom('Fred');
         $panini_37->setAlbum($album_1);
-        $panini_37->setImageName('fabinho.jpg');
+        $panini_37->setImageName('fred.jpg');
         $album_1->addPanini($panini_37);
 
         $panini_38 = new Panini();
-        $panini_38->setNom('Fred');
+        $panini_38->setNom('Guimarães');
         $panini_38->setAlbum($album_1);
-        $panini_38->setImageName('fred.jpg');
+        $panini_38->setImageName('guimaraes.jpg');
         $album_1->addPanini($panini_38);
 
         $panini_39 = new Panini();
-        $panini_39->setNom('Guimarães');
+        $panini_39->setNom('Lucas Paquetá');
         $panini_39->setAlbum($album_1);
-        $panini_39->setImageName('guimaraes.jpg');
+        $panini_39->setImageName('lucas_paqueta.jpg');
         $album_1->addPanini($panini_39);
 
         $panini_40 = new Panini();
-        $panini_40->setNom('Lucas Paquetá');
+        $panini_40->setNom('Antony');
         $panini_40->setAlbum($album_1);
-        $panini_40->setImageName('lucas_paqueta.jpg');
+        $panini_40->setImageName('antony.jpg');
         $album_1->addPanini($panini_40);
 
         $panini_41 = new Panini();
-        $panini_41->setNom('Antony');
+        $panini_41->setNom('Gabriel Jesus');
         $panini_41->setAlbum($album_1);
-        $panini_41->setImageName('antony.jpg');
+        $panini_41->setImageName('gabriel_jesus.jpg');
         $album_1->addPanini($panini_41);
 
         $panini_42 = new Panini();
-        $panini_42->setNom('Gabriel Jesus');
+        $panini_42->setNom('Gabriel Martinelli');
         $panini_42->setAlbum($album_1);
-        $panini_42->setImageName('gabriel_jesus.jpg');
+        $panini_42->setImageName('gabriel_martinelli.jpg');
         $album_1->addPanini($panini_42);
 
         $panini_43 = new Panini();
-        $panini_43->setNom('Gabriel Martinelli');
+        $panini_43->setNom('Neymar Jr');
         $panini_43->setAlbum($album_1);
-        $panini_43->setImageName('gabriel_martinelli.jpg');
+        $panini_43->setImageName('neymar_jr.jpg');
         $album_1->addPanini($panini_43);
 
         $panini_44 = new Panini();
-        $panini_44->setNom('Neymar Jr');
+        $panini_44->setNom('Joao Pedro');
         $panini_44->setAlbum($album_1);
-        $panini_44->setImageName('neymar_jr.jpg');
+        $panini_44->setImageName('joao_pedro.jpg');
         $album_1->addPanini($panini_44);
 
         $panini_45 = new Panini();
-        $panini_45->setNom('Joao Pedro');
+        $panini_45->setNom('Raphinha');
         $panini_45->setAlbum($album_1);
-        $panini_45->setImageName('joao_pedro.jpg');
+        $panini_45->setImageName('raphinha.jpg');
         $album_1->addPanini($panini_45);
 
         $panini_46 = new Panini();
-        $panini_46->setNom('Raphinha');
+        $panini_46->setNom('Richarlison');
         $panini_46->setAlbum($album_1);
-        $panini_46->setImageName('raphinha.jpg');
+        $panini_46->setImageName('richarlison.jpg');
         $album_1->addPanini($panini_46);
 
         $panini_47 = new Panini();
-        $panini_47->setNom('Richarlison');
+        $panini_47->setNom('Rodrygo');
         $panini_47->setAlbum($album_1);
-        $panini_47->setImageName('richarlison.jpg');
+        $panini_47->setImageName('rodrygo.jpg');
         $album_1->addPanini($panini_47);
 
         $panini_48 = new Panini();
-        $panini_48->setNom('Rodrygo');
+        $panini_48->setNom('Vinicius Jr');
         $panini_48->setAlbum($album_1);
-        $panini_48->setImageName('rodrygo.jpg');
+        $panini_48->setImageName('vinicius_jr.jpg');
         $album_1->addPanini($panini_48);
-
-        $panini_49 = new Panini();
-        $panini_49->setNom('Vinicius Jr');
-        $panini_49->setAlbum($album_1);
-        $panini_49->setImageName('vinicius_jr.jpg');
-        $album_1->addPanini($panini_49);
 
         $equipe_1 = new Equipe();
         $equipe_1->setNom('équipe de France');
@@ -372,7 +366,6 @@ class AppFixtures extends Fixture
         $equipe_2->addPanini($panini_46);
         $equipe_2->addPanini($panini_47);
         $equipe_2->addPanini($panini_48);
-        $equipe_2->addPanini($panini_49);
         $equipe_2->setCreateur($membre_1);
 
         $manager->persist($membre_1);
@@ -427,7 +420,6 @@ class AppFixtures extends Fixture
         $manager->persist($panini_46);
         $manager->persist($panini_47);
         $manager->persist($panini_48);
-        $manager->persist($panini_49);
 
         $manager->persist($equipe_1);
         $manager->persist($equipe_2);

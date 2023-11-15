@@ -3,14 +3,10 @@
 {% block title %}Mon Album{% endblock %}
 
 {% block body %}
-    {{ parent()}}
+    {{ parent() }}
     <div class="container">
         <h1>Mon Album</h1>
-        <table>
-            <tr>
-                <th>ID</th>
-                <td>{{ album.id }}</td>
-            </tr>
+        <table class="album-table">
             <tr>
                 <th>Nom</th>
                 <td>{{ album.nom }}</td>
@@ -22,20 +18,19 @@
             <tr>
                 <th>Cartes</th>
                 <td>
-                    <ul>
+                    <div class="album-images">
                         {% for carte in album.paninis %}
-                            <li><img src="{{ vich_uploader_asset(carte, 'image') }}">
-                            <a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a></li>
+                            <a href="{{ path('panini_show', { 'id': carte.id }) }}">
+                                <img src="{{ vich_uploader_asset(carte, 'image') }}" alt="{{ carte.nom }}" class="album-image">
+                            </a>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </td>
             </tr>
         </table>
 
         <br>
         <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste</a>
-
-
         <a href="{{ path('album_delete', {'album_id' : album.id, 'membre_id' : membre.id})}}" class="btn-sm">Supprimer</a>
         <a href="{{ path('album_edit', {'album_id' : album.id, 'membre_id' : membre.id}) }}" class="btn-sm">Ajouter/Supprimer un panini</a>
     </div>
@@ -53,9 +48,10 @@
             margin-bottom: 20px;
         }
 
-        table {
+        table.album-table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
@@ -68,13 +64,17 @@
             background-color: #f2f2f2;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .album-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
-        li {
+        .album-image {
+            width: 100%; /* Ajustez la largeur des images en fonction de vos besoins */
+            height: auto;
             margin-bottom: 10px;
+            border: 1px solid #ddd;
         }
 
         a {
