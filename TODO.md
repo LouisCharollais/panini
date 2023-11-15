@@ -28,24 +28,24 @@
     - [x] Navigation d'un Album vers la consultation de ses Paninis
 - [x] 11 : Intégration d'une mise en forme CSS avec Bootstrap dans les gabarits Twig
 - [x] 12 : Intégration de menus de navigation
-- [x] 13 : Ajout de l'entité [galerie] au modèle des données et de l'association M-N avec Panini
-- [x] 14 : Ajout de [galerie] dans le back-office
-- [x] 15 : Ajout d'un contrôleur CRUD au front-office pour [galerie]
+- [x] 13 : Ajout de l'entité Equipe au modèle des données et de l'association M-N avec Panini
+- [x] 14 : Ajout de Equipe dans le back-office
+- [x] 15 : Ajout d'un contrôleur CRUD au front-office pour Equipe
 - [x] 16 : Ajout de fonctions CRUD au front-office pour Album
-- [x] 17 : Ajout de la consultation des Paninis depuis les [galeries] publiques
-- [ ] 18 : Ajout d'un contrôleur CRUD pour Membres
-- [ ] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
-- [ ] 20 : Contextualisation de la création d'Album en fonction du Membre
-- [ ] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
-- [ ] 22 : Contextualisation de la création d'une [galerie] en fonction du membre
-- [ ] 23 : Affichage des seules galeries publiques
-- [ ] 24 : Contextualisation de l'ajout d'un Panini à une [galerie]
-- [ ] 25 : Ajout des Utilisateurs au modèle de données et du lien utilisateur - membre
-- [ ] 26 : Ajout de l'authentification
-- [ ] 27 : Protection de l'accès aux routes interdites réservées aux membres
-- [ ] 28 : Protection de l'accès aux données à leurs seuls propriétaires
-- [ ] 29 : Contextualisation du chargement des données en fonction de l'utilisateur connecté
-- [ ] 30 : Gestion de la suppression
+- [x] 17 : Ajout de la consultation des Paninis depuis les équipes publiques
+- [x] 18 : Ajout d'un contrôleur CRUD pour Membres
+- [x] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
+- [x] 20 : Contextualisation de la création d'Album en fonction du Membre
+- [x] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
+- [x] 22 : Contextualisation de la création d'une Equipe en fonction du membre
+- [x] 23 : Affichage des seules galeries publiques
+- [x] 24 : Contextualisation de l'ajout d'un Panini à une Equipe
+- [x] 25 : Ajout des Utilisateurs au modèle de données et du lien utilisateur - membre
+- [x] 26 : Ajout de l'authentification
+- [x] 27 : Protection de l'accès aux routes interdites réservées aux membres
+- [x] 28 : Protection de l'accès aux données à leurs seuls propriétaires
+- [x] 29 : Contextualisation du chargement des données en fonction de l'utilisateur connecté
+- [x] 30 : Gestion de la suppression
 - [ ] 31 : Ajout de la gestion de la mise en ligne d'images pour des photos dans les Paninis
 - [ ] 32 : Utilisation des messages flash pour les CRUDs
 - [ ] 33 : Ajout d'une gestion de marque-pages/panier dans le front-office
