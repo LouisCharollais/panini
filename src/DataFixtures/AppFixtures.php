@@ -52,6 +52,24 @@ class AppFixtures extends Fixture
         $album_1->setMembre($membre_1);
         $membre_1->addAlbum($album_1);
 
+        $album_2 = new Album();
+        $album_2->__construct();
+        $album_2->setNom('album_2');
+        $album_2->setMembre($membre_2);
+        $membre_2->addAlbum($album_2);
+
+        $panini_test_1 = new Panini();
+        $panini_test_1->setNom('Olivier Giroud');
+        $panini_test_1->setAlbum($album_2);
+        $panini_test_1->setImageName('olivier_giroud.jpg');
+        $album_2->addPanini($panini_test_1);
+
+        $panini_test_2 = new Panini();
+        $panini_test_2->setNom('Kyliann Mbappé');
+        $panini_test_2->setAlbum($album_2);
+        $panini_test_2->setImageName('kyliann_mbappe.jpg');
+        $album_2->addPanini($panini_test_2);
+
         $panini_1 = new Panini();
         $panini_1->setNom('Mike Maignan');
         $panini_1->setAlbum($album_1);
@@ -402,6 +420,7 @@ class AppFixtures extends Fixture
         $manager->persist($membre_2);
 
         $manager->persist($album_1);
+        $manager->persist($album_2);
 
         $manager->persist($panini_1);
         $manager->persist($panini_2);
@@ -451,11 +470,12 @@ class AppFixtures extends Fixture
         $manager->persist($panini_46);
         $manager->persist($panini_47);
         $manager->persist($panini_48);
+        $manager->persist($panini_test_1);
+        $manager->persist($panini_test_2);
 
         $manager->persist($equipe_1);
         $manager->persist($equipe_2);
 
         $manager->flush();
-
     }
 }
