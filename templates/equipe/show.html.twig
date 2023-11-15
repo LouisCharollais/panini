@@ -11,6 +11,8 @@
         {% else %}
             Privée
         {% endif %}
+
+        {% if app.user == equipe.createur.user %}
         <br>
         <form method="post" action="{{ path('partage', {'equipe_id': equipe.id, 'membre_id': membre.id}) }}">
             <button type="submit" class="btn btn-primary btn-sm">
@@ -21,6 +23,7 @@
                 {% endif %}
             </button>
         </form>
+        {% endif %}
         <table class="panini-table">
             <tr>
                 <th>Nom</th>
@@ -48,8 +51,10 @@
 
         <br>
         <a href="{{ path('membre_show') }}" class="btn-primary btn-sm">Retour à la liste</a>
+        {% if app.user == equipe.createur.user %}
         <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Supprimer</a>
         <a href="{{ path('equipe_edit', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Ajouter/Retirer un panini</a>
+        {% endif %}
     </div>
 
     <style>

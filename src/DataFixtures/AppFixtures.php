@@ -41,6 +41,11 @@ class AppFixtures extends Fixture
         $membre_1->setUser($user);
         $membre_1->setPrenom('test_prenom_1');
 
+        $membre_2 = new Membre();
+        $membre_2->setNom('test_nom_2');
+        $membre_2->setUser($user_admin);
+        $membre_2->setPrenom('test_prenom_2');
+
         $album_1 = new Album();
         $album_1->__construct();
         $album_1->setNom('album_1');
@@ -365,7 +370,7 @@ class AppFixtures extends Fixture
 
         $equipe_2 = new Equipe();
         $equipe_2->setNom('équipe du Brésil');
-        $equipe_2->setPublished(false);
+        $equipe_2->setPublished(true);
         $equipe_2->addPanini($panini_24);
         $equipe_2->addPanini($panini_25);
         $equipe_2->addPanini($panini_26);
@@ -391,9 +396,10 @@ class AppFixtures extends Fixture
         $equipe_2->addPanini($panini_46);
         $equipe_2->addPanini($panini_47);
         $equipe_2->addPanini($panini_48);
-        $equipe_2->setCreateur($membre_1);
+        $equipe_2->setCreateur($membre_2);
 
         $manager->persist($membre_1);
+        $manager->persist($membre_2);
 
         $manager->persist($album_1);
 

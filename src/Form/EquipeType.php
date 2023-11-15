@@ -42,10 +42,6 @@ class EquipeType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('published', CheckboxType::class, [
-                'label' => 'Publique',
-                'required' => false,
-            ])
         ;
 
 
