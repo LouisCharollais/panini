@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Membre;
 use App\Form\MembreType;
-use App\Entity\Album;
-use App\Form\AlbumType;
 use App\Repository\MembreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -13,11 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/membre')]
 class MembreController extends AbstractController
 {
     #[Route('/', name: 'membre_index', methods: ['GET'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function index(MembreRepository $membreRepository): Response
     {
         return $this->render('membre/index.html.twig', [
@@ -25,27 +25,8 @@ class MembreController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'membre_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $membre = new Membre();
-        $form = $this->createForm(MembreType::class, $membre);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($membre);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('membre_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('membre/new.html.twig', [
-            'membre' => $membre,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{membre_id}', name: 'membre_show', requirements: ['membre_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function show(ManagerRegistry $doctrine, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -56,6 +37,7 @@ class MembreController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'membre_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(Request $request, Membre $membre, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MembreType::class, $membre);
@@ -74,6 +56,7 @@ class MembreController extends AbstractController
     }
 
     #[Route('/{id}', name: 'membre_delete', methods: ['POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(Request $request, Membre $membre, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$membre->getId(), $request->request->get('_token'))) {

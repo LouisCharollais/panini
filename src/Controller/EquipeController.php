@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Equipe;
-use App\Entity\Panini;
 use App\Entity\Membre;
 use App\Form\EquipeType;
 use App\Repository\EquipeRepository;
@@ -13,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/equipe')]
 class EquipeController extends AbstractController
@@ -27,6 +26,7 @@ class EquipeController extends AbstractController
     }
 
     #[Route('membre/{membre_id}/equipe/{equipe_id}', name: 'equipe_show', requirements: ['equipe_id' => '\d+', 'membre_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function show(ManagerRegistry $doctrine, $equipe_id, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -46,6 +46,7 @@ class EquipeController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/equipe/new', name: 'equipe_new', methods: ['GET', 'POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function new(Request $request, EntityManagerInterface $entityManager, $membre_id): Response
     {
         $equipe = new Equipe();
@@ -80,6 +81,7 @@ class EquipeController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/equipe/{equipe_id}/delete', name: 'equipe_delete', requirements: ['equipe_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(ManagerRegistry $doctrine, $membre_id, $equipe_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -99,6 +101,7 @@ class EquipeController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/equipe/{equipe_id}/edit', name: 'equipe_edit', requirements: ['equipe_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(Request $request, $equipe_id, $membre_id, EntityManagerInterface $entityManager): Response
     {
         $equipe = $entityManager->getRepository(Equipe::class)->find($equipe_id);

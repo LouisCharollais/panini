@@ -12,10 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class PaniniController extends AbstractController
 {
     #[Route('/panini/{id}', name: 'panini_show', requirements: ['id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function index(ManagerRegistry $doctrine, $id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -36,6 +38,7 @@ class PaniniController extends AbstractController
     }
 
     #[Route('/panini', name: 'panini_all')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function index_bis(ManagerRegistry $doctrine): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -47,6 +50,7 @@ class PaniniController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/album/{album_id}/add_panini', name: 'panini_add', methods: ['GET', 'POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function addPanini(ManagerRegistry $doctrine, $membre_id, $album_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -69,6 +73,7 @@ class PaniniController extends AbstractController
 
     //new panini
     #[Route('/membre/{membre_id}/album/{album_id}/add_panini/new', name: 'panini_new', methods: ['GET', 'POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function new(Request $request, EntityManagerInterface $entityManager, $membre_id, $album_id): Response
     {
         $panini = new Panini();

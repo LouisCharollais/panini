@@ -5,17 +5,18 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Form\AlbumType;
 use App\Entity\Membre;
-use App\Form\MembreType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AlbumController extends AbstractController
 {
     #[Route('/membre/{membre_id}/album', name: 'album')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function index(ManagerRegistry $doctrine, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -35,6 +36,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route('membre/{membre_id}/album/{album_id}', name: 'album_show', requirements: ['album_id' => '\d+', 'membre_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function show(ManagerRegistry $doctrine, $album_id, $membre_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -54,6 +56,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/album/{album_id}/edit', name: 'album_edit', requirements: ['album_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(Request $request, $album_id, $membre_id, EntityManagerInterface $entityManager): Response
     {
         $album = $entityManager->getRepository(Album::class)->find($album_id);
@@ -76,6 +79,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/album/{album_id}/delete', name: 'album_delete', requirements: ['album_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(ManagerRegistry $doctrine, $membre_id, $album_id): Response
     {
         $entity_manager = $doctrine->getManager();
@@ -95,6 +99,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/membre/{membre_id}/album/new', name: 'album_new', requirements: ['membre_id' => '\d+'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function new(Request $request, EntityManagerInterface $entityManager, $membre_id): Response
     {
         $album = new Album();
