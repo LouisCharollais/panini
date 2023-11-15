@@ -23,14 +23,16 @@ class PaniniController extends AbstractController
 
         if (!$panini) {
             throw $this->createNotFoundException(
-                'No panini found for id '.$id
+                'No panini found for id ' . $id
             );
         }
 
         return $this->render('panini/show.html.twig', [
             'panini' => $panini,
-            'controller_name' => 'PaniniController'
+            'controller_name' => 'PaniniController',
+            'imageName' => $panini->getImageName()
         ]);
+
     }
 
     #[Route('/panini', name: 'panini_all')]

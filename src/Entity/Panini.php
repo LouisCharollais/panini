@@ -6,8 +6,11 @@ use App\Repository\PaniniRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PaniniRepository::class)]
+#[Vich\Uploadable]
 class Panini
 {
     #[ORM\Id]
@@ -28,6 +31,12 @@ class Panini
     #[ORM\ManyToOne(inversedBy: 'paninis')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Membre $membre = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imageName = null;
+
+    #[Vich\UploadableField(mapping: 'panini_image', fileNameProperty: 'imageName')]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -103,6 +112,30 @@ class Panini
     public function setMembre(?Membre $membre): static
     {
         $this->membre = $membre;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(UpLoadedFile $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(string $imageName): static
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }

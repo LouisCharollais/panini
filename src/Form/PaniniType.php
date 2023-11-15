@@ -8,6 +8,7 @@ use App\Entity\Equipe;
 use App\Entity\Membre;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,6 +48,12 @@ class PaniniType extends AbstractType
                 'choice_label' => 'nom',
                 'placeholder' => 'Choisir un album',
                 'required' => true,
+            ])
+
+            ->add('image', VichFileType::class, [
+                'required' => true,
+                'allow_delete' => true,
+                'download_uri' => true,
             ])
         ;
     }

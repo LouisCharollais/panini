@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        panini_image:
+            uri_prefix: /media/paninis
+            upload_destination: '%kernel.project_dir%/public/media/paninis'
+    #        namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
