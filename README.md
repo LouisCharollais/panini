@@ -8,79 +8,23 @@ Nomenclature :
     - Membre : Membre
     - Galerie : Equipe
 
-Commandes utiles
-symfony console make:entity
-symfony console doctrine:database:create
-symfony console doctrine:schema:create
-symfony console doctrine:fixtures:load
+User :
+email : louis@localhost
+mdp   : password123
 
-en cas de soucis, on peut recréer la base de données (à vide) :
-suppression de la base (symfony console doctrine:database:drop)
-re-création de la base (symfony console doctrine:database:create)
-re-création du schéma (symfony console doctrine:schema:create)
+Admin :
+email : admin@localhost
+mdp   : password456
 
-Couleurs des boutons
-Bleu : #007bff
-Bleu foncé : #0056b3
-Vert : #28a745
-Vert foncé : #218838
-Rouge : #dc3545
-Rouge foncé : #c82333
-Jaune : #ffc107
-Jaune foncé : #e0a800
-Gris : #999
-Gris foncé : #777
+'Accueil' envoie à la page avec la liste des Albums et des Equipes du membre (privées et publiques)
+'Equipes' envoie à la page avec la liste des équipes publiques (du membre et des autres)
 
-!! bien refaire la page edit !!
+Pour voir les détails d'un panini, il faut suivre Accueil --> Equipe et cliquer sur une image
+                                                  Accueil --> Album  et cliquer sur une image
 
-## TODO LIST
+Le bouton 'Rendre Publique/Privé' dans la page de détail d'une équipe permet de régler la visibilité de l'équipe
 
-- [x] 1 : Prise de connaissance du cahier des charges
-- [x] 2 : Initialisation du projet Symfony
-- [x] 3 : Gestion du code source avec Git
-- [x] 4 : Ajout au modèle des entités liées Album et Panini
-    - [x] Entité Album
-    - [x] Entité Panini
-    - [x] Association 1-N entre Album et Panini
-    - [x] Propriétés non essentielles des Paninis
-- [x] 5 : Ajout de données de test chargeables avec fixtures
-    - [x] Pour Album
-    - [x] Pour Panini
-- [x] 6 : Ajout d'une interface EasyAdmin dans le back-office avec les 2 contrôleurs CRUD
-    - [x] Pour Album
-    - [x] Pour Panini
-    - [x] Navigation entre Album et ses Paninis
-- [x] 7 : Ajout de l'entité Membre et du lien Membre-Album
-    - [x] Ajout de Membre au modèle de données
-    - [x] Ajout de l'association 1-N entre Membre et Album
-- [x] 8 : Création des pages du "front-office" de consultation des Albums
-    - [x] Consultation de la liste des Albums
-    - [x] Consultation d'une fiche d'Album à partir de la liste
-- [x] 9 : Ajout de la navigation entre Album et Panini dans le back-office
-- [x] 10 : Utilisation de gabarits pour les pages de consultation du front-office
-    - [x] Consultation d'un Panini
-    - [x] Consultation de la liste des Paninis d'un Album
-    - [x] Navigation d'un Album vers la consultation de ses Paninis
-- [x] 11 : Intégration d'une mise en forme CSS avec Bootstrap dans les gabarits Twig
-- [x] 12 : Intégration de menus de navigation
-- [x] 13 : Ajout de l'entité Equipe au modèle des données et de l'association M-N avec Panini
-- [x] 14 : Ajout de Equipe dans le back-office
-- [x] 15 : Ajout d'un contrôleur CRUD au front-office pour Equipe
-- [x] 16 : Ajout de fonctions CRUD au front-office pour Album
-- [x] 17 : Ajout de la consultation des Paninis depuis les Equipes publiques
-- [x] 18 : Ajout d'un contrôleur CRUD pour Membres
-- [x] 19 : Consultation de la liste des seuls inventaires d'un membre dans le front-office
-- [x] 20 : Contextualisation de la création d'Album en fonction du Membre
-- [x] 21 : Contextualisation de la création d'un Panini en fonction de l'Album
-- [x] 22 : Contextualisation de la création d'une Equipe en fonction du membre
-- [ ] 23 : Affichage des seules Equipes publiques
-- [x] 24 : Contextualisation de l'ajout d'un Panini à une Equipe
-- [x] 25 : Ajout des Utilisateurs au modèle de données et du lien utilisateur - membre
-- [x] 26 : Ajout de l'authentification
-- [ ] 27 : Protection de l'accès aux routes interdites réservées aux membres
-- [ ] 28 : Protection de l'accès aux données à leurs seuls propriétaires
-- [ ] 29 : Contextualisation du chargement des données en fonction de l'utilisateur connecté
-- [ ] 30 : Gestion de la suppression
-- [ ] 31 : Ajout de la gestion de la mise en ligne d'images pour des photos dans les Paninis
-- [ ] 32 : Utilisation des messages flash pour les CRUDs
-- [ ] 33 : Ajout d'une gestion de marque-pages/panier dans le front-office
+On peut ajouter/retirer un panini d'une équipe à partir du bouton en bas de page (choix parmi les paninis présents dans les albums appartenant au membre connecté)
+idem pour le cas d'un album, mais si on supprime un panini d'un album, le panini est supprimé définitivement car il n'y a pas d'association Membre-Panini
+
+Je n'ai pas eu le temps de rajouter la fonctionnalité permettant de rajouter une image au panini qu'on crée, mais c'était dans les plans :)
