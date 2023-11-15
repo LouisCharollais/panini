@@ -24,7 +24,9 @@
                 <td>
                     <ul>
                         {% for carte in equipe.paninis %}
-                            <li><a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a></li>
+                            <li><img src="{{ vich_uploader_asset(carte, 'image') }}">
+                            <a href="{{ path('panini_show', { 'id': carte.id }) }}">{{ carte.nom }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </td>
