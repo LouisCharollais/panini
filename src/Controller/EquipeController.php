@@ -20,8 +20,11 @@ class EquipeController extends AbstractController
     #[Route('/', name: 'equipe_index', methods: ['GET'])]
     public function index(EquipeRepository $equipeRepository): Response
     {
+        $user = $this->getUser();
+        $membre = $user->getMembre();
         return $this->render('equipe/index.html.twig', [
             'equipes' => $equipeRepository->findBy(['published'=>true]),
+            'membre' => $membre,
         ]);
     }
 
@@ -52,6 +55,7 @@ class EquipeController extends AbstractController
         $equipe = new Equipe();
         $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
         $equipe -> setCreateur($membre);
+        $equipe -> setPublished(false);
         $equipe -> setNom('Nouvelle équipe');
         $entityManager->persist($equipe);
         $entityManager->flush();
@@ -120,6 +124,27 @@ class EquipeController extends AbstractController
             'equipe' => $equipe,
             'form' => $form,
             'membre' => $membre,
+        ]);
+    }
+
+    #[Route('/membre/{membre_id}/equipe/{equipe_id}/partage', 'partage')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function visibility(Request $request, $equipe_id, $membre_id, EntityManagerInterface $entityManager): Response{
+        $equipe = $entityManager->getRepository(Equipe::class)->find($equipe_id);
+        $membre = $entityManager->getRepository(Membre::class)->find($membre_id);
+
+        if (!$equipe) {
+            throw $this->createNotFoundException('Équipe non trouvée');
+        }
+
+        $equipe->setPublished(!$equipe->isPublished());
+
+        $entityManager->flush();
+
+        // Redirigez vers la page de l'équipe
+        return $this->redirectToRoute('equipe_show', [
+            'equipe_id' => $equipe->getId(),
+            'membre_id' => $membre->getId()
         ]);
     }
 }

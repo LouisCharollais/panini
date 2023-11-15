@@ -30,6 +30,10 @@ class Membre
     #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Panini::class, orphanRemoval: true)]
     private Collection $paninis;
 
+    #[ORM\OneToOne(inversedBy: 'membre', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
@@ -161,6 +165,18 @@ class Membre
                 $panini->setMembre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

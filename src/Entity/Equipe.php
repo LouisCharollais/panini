@@ -24,6 +24,9 @@ class Equipe
     #[ORM\ManyToOne(inversedBy: 'equipes')]
     private ?Membre $createur = null;
 
+    #[ORM\Column]
+    private ?bool $published = null;
+
     public function __construct()
     {
         $this->paninis = new ArrayCollection();
@@ -82,8 +85,15 @@ class Equipe
         return $this;
     }
 
-    public function isPublished(): bool
+    public function isPublished(): ?bool
     {
-        return $this->getCreateur() !== null;
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): static
+    {
+        $this->published = $published;
+
+        return $this;
     }
 }

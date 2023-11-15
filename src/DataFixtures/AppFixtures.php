@@ -6,17 +6,40 @@ use App\Entity\Album;
 use App\Entity\Membre;
 use App\Entity\Panini;
 use App\Entity\Equipe;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
+        $user = new User();
+        $password = $this->hasher->hashPassword($user, 'password123');
+        $user->setEmail('louis@localhost');
+        $user->setPassword($password);
+        $user->setRoles(['ROLE_USER']);
+
+        $user_admin = new User();
+        $password = $this->hasher->hashPassword($user_admin, 'password456');
+        $user_admin->setEmail('admin@localhost');
+        $user_admin->setPassword($password);
+        $user_admin->setRoles(['ROLE_ADMIN']);
+
+        $manager->persist($user);
+
         $membre_1 = new Membre();
         $membre_1->setNom('test_nom_1');
+        $membre_1->setUser($user);
         $membre_1->setPrenom('test_prenom_1');
-        $membre_1->__construct();
 
         $album_1 = new Album();
         $album_1->__construct();
@@ -314,6 +337,7 @@ class AppFixtures extends Fixture
 
         $equipe_1 = new Equipe();
         $equipe_1->setNom('équipe de France');
+        $equipe_1->setPublished(true);
         $equipe_1->addPanini($panini_1);
         $equipe_1->addPanini($panini_2);
         $equipe_1->addPanini($panini_3);
@@ -341,6 +365,7 @@ class AppFixtures extends Fixture
 
         $equipe_2 = new Equipe();
         $equipe_2->setNom('équipe du Brésil');
+        $equipe_2->setPublished(false);
         $equipe_2->addPanini($panini_24);
         $equipe_2->addPanini($panini_25);
         $equipe_2->addPanini($panini_26);

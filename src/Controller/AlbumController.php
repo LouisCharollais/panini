@@ -17,10 +17,11 @@ class AlbumController extends AbstractController
 {
     #[Route('/membre/{membre_id}/album', name: 'album')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function index(ManagerRegistry $doctrine, $membre_id): Response
+    public function index(): Response
     {
-        $entity_manager = $doctrine->getManager();
-        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
+        $user = $this->getUser();
+        $membre = $user->getMembre();
+        $membre_id = $membre->getId();
 
         if (!$membre) {
             throw $this->createNotFoundException(

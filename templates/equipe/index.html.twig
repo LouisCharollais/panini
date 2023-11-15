@@ -18,9 +18,9 @@
                 <tr>
                     <td>{{ equipe.nom }}</td>
                     <td>
-                        <a href="{{ path('equipe_show', {'id': equipe.id}) }}" class="btn btn-primary btn-sm">Voir</a>
-                        <a href="{{ path('equipe_edit', {'id': equipe.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="{{ path('equipe_delete', {'id': equipe.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                        <a href="{{ path('equipe_show', {'equipe_id': equipe.id, 'membre_id': membre.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="{{ path('equipe_edit', {'equipe_id': equipe.id, 'membre_id': membre.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{{ path('equipe_delete', {'equipe_id': equipe.id, 'membre_id': membre.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                     </td>
                 </tr>
             {% else %}

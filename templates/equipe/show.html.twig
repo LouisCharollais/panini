@@ -6,6 +6,21 @@
     {{ parent() }}
     <div class="container">
         <h1>Mon Equipe</h1>
+        {% if equipe.published %}
+            Publique
+        {% else %}
+            Privée
+        {% endif %}
+        <br>
+        <form method="post" action="{{ path('partage', {'equipe_id': equipe.id, 'membre_id': membre.id}) }}">
+            <button type="submit" class="btn btn-primary btn-sm">
+                {% if equipe.published %}
+                    Rendre Privée
+                {% else %}
+                    Rendre Publique
+                {% endif %}
+            </button>
+        </form>
         <table class="panini-table">
             <tr>
                 <th>Nom</th>
@@ -32,7 +47,7 @@
         </table>
 
         <br>
-        <a href="{{ path('membre_show', {'membre_id' : membre.id}) }}" class="btn-primary btn-sm">Retour à la liste</a>
+        <a href="{{ path('membre_show') }}" class="btn-primary btn-sm">Retour à la liste</a>
         <a href="{{ path('equipe_delete', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Supprimer</a>
         <a href="{{ path('equipe_edit', {'equipe_id' : equipe.id, 'membre_id' : membre.id}) }}" class="btn-sm">Ajouter/Retirer un panini</a>
     </div>
@@ -103,7 +118,7 @@
         }
 
         .panini-image {
-            width: 100%; /* Ajustez la largeur des images en fonction de vos besoins */
+            width: 100%;
             height: auto;
             border: 1px solid #ddd;
         }

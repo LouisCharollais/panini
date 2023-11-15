@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Membre;
+use App\Entity\User;
 use App\Form\MembreType;
 use App\Repository\MembreRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,12 +26,12 @@ class MembreController extends AbstractController
         ]);
     }
 
-    #[Route('/{membre_id}', name: 'membre_show', requirements: ['membre_id' => '\d+'])]
+    #[Route('/membre', name: 'membre_show')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function show(ManagerRegistry $doctrine, $membre_id): Response
+    public function show(): Response
     {
-        $entity_manager = $doctrine->getManager();
-        $membre = $entity_manager->getRepository(Membre::class)->find($membre_id);
+        $user = $this->getUser();
+        $membre = $user->getMembre();
         return $this->render('membre/show.html.twig', [
             'membre' => $membre,
         ]);
@@ -38,8 +39,11 @@ class MembreController extends AbstractController
 
     #[Route('/{id}/edit', name: 'membre_edit', methods: ['GET', 'POST'])]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function edit(Request $request, Membre $membre, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+        $membre = $user->getMembre();
+
         $form = $this->createForm(MembreType::class, $membre);
         $form->handleRequest($request);
 

@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Equipe;
 use App\Repository\PaniniRepository;
-use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use App\Entity\Panini;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -41,7 +41,12 @@ class EquipeType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'expanded' => true,
-            ]);
+            ])
+            ->add('published', CheckboxType::class, [
+                'label' => 'Publique',
+                'required' => false,
+            ])
+        ;
 
 
         ;
